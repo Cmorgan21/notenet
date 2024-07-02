@@ -3,14 +3,12 @@ import api from "../api";
 import Note from "../components/Note";
 import logo from "../assets/notenetlogo.png";
 import SuccessMessage from "../components/SuccessMessage";
-
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [isFormLoaded, setIsFormLoaded] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
-  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     getNotes();
@@ -19,16 +17,13 @@ const Notes = () => {
   const getNotes = async () => {
     try {
       const response = await api.get("/api/notes/");
-      if (response.data && Array.isArray(response.data)) {
-        setNotes(response.data);
-      } else {
-        setNotes([]); // Set to empty array if response is not as expected
+      if (response === null) {
+        setNotes([]);
+        return "No notes found";
       }
+      setNotes(response.data);
     } catch (error) {
       console.error("Error fetching notes:", error);
-      setNotes([]); // Set to empty array on error
-    } finally {
-      setLoading(false); // Always set loading state to false
     }
   };
 
@@ -91,9 +86,7 @@ const Notes = () => {
           />
         )}
         <div className="notes">
-          {loading ? (
-            <p className="text-center text-3xl">Loading...</p>
-          ) : notes.length === 0 ? (
+          {notes.length === 0 ? (
             <div className="text-center flex flex-col items-center justify-center">
               <p className="text-3xl">No notes found.</p>
               <img src={logo} alt="Notes" className="w-64 h-64 mt-4" />
