@@ -7,12 +7,13 @@ const api = axios.create({
 
 export const handleUnauthorized = () => {
   localStorage.removeItem(ACCESS_TOKEN);
-  // Redirect to sign-in page and set a message in localStorage
   localStorage.setItem(
     "unauthorizedMessage",
     "Your session has expired. Please sign in again."
   );
-  window.location.replace("/signin");
+  setTimeout(() => {
+    window.location.replace("/signin");
+  }, 3000); // 3 seconds delay
 };
 
 api.interceptors.request.use(
