@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import api from "../api"; // Make sure to import your API service
+import api from "../api";
 import { ACCESS_TOKEN } from "../constants";
 
 const Header = () => {
