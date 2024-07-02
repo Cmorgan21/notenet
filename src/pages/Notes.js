@@ -3,6 +3,7 @@ import api from "../api";
 import Note from "../components/Note";
 import logo from "../assets/notenetlogo.png";
 import SuccessMessage from "../components/SuccessMessage";
+
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [body, setBody] = useState("");
@@ -21,7 +22,8 @@ const Notes = () => {
         setNotes([]);
         return "No notes found";
       }
-      setNotes(response.data.content);
+      setNotes(response.data.results);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
