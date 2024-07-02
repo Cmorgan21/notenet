@@ -11,6 +11,7 @@ const Profile = () => {
   const [showUsernameModal, setShowUsernameModal] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
+  const [imageSelected, setImageSelected] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -28,7 +29,9 @@ const Profile = () => {
   }, []);
 
   const handleImageChange = (event) => {
-    setSelectedImage(event.target.files[0]);
+    const file = event.target.files[0];
+    setSelectedImage(file);
+    setImageSelected(!!file);
   };
 
   const handleUsernameSave = async (username) => {
@@ -64,6 +67,7 @@ const Profile = () => {
         },
       });
       setProfile(response.data);
+      setImageSelected(false);
       console.log("Image updated:", response.data);
     } catch (error) {
       console.error("Error:", error);
@@ -131,6 +135,11 @@ const Profile = () => {
           <strong>Created at:</strong>{" "}
           {new Date(profile.created_at).toLocaleDateString()}
         </p>
+        {imageSelected && (
+          <p className="mt-2 text-orange-500">
+            Image has been selected. Please press upload to save.
+          </p>
+        )}
         <form onSubmit={handleSubmit} className="mt-4">
           <button
             type="submit"
