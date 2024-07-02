@@ -17,7 +17,6 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const response = await api.get("/api/profile/");
-        console.log(response.data);
         setProfile(response.data);
         setLoading(false);
       } catch (error) {
