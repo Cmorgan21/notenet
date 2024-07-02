@@ -1,9 +1,15 @@
+import React, { useState, useEffect } from "react";
+import api from "../api";
+import Note from "../components/Note";
+import logo from "../assets/notenetlogo.png";
+import SuccessMessage from "../components/SuccessMessage"; // Import SuccessMessage component
+
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [isFormLoaded, setIsFormLoaded] = useState(false);
-  const [message, setMessage] = useState({ text: "", type: "" });
+  const [message, setMessage] = useState({ text: "", type: "" }); // State for success and error messages
 
   useEffect(() => {
     getNotes();
@@ -12,6 +18,10 @@ const Notes = () => {
   const getNotes = async () => {
     try {
       const response = await api.get("/api/notes/");
+      if (response === null) {
+        setNotes([]);
+        return "No notes found";
+      }
       setNotes(response.data);
     } catch (error) {
       console.error("Error fetching notes:", error);
@@ -43,21 +53,24 @@ const Notes = () => {
       const response = await api.post(
         "/api/create-note/",
         { title, body },
-        { headers: { "Content-Type": "application/json" } }
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       if (response.status === 201) {
         setMessage({ text: "Note created successfully!", type: "success" });
         setTimeout(() => setMessage({ text: "", type: "" }), 3000);
-        setTitle("");
-        setBody("");
-        setIsFormLoaded(false);
+        setTitle(""); // Reset title field
+        setBody(""); // Reset body field
+        setIsFormLoaded(false); // Close the form
         getNotes();
       } else {
         setMessage({ text: "Failed to create note.", type: "error" });
         setTimeout(() => setMessage({ text: "", type: "" }), 3000);
       }
     } catch (err) {
-      console.error("Error creating note:", err);
       setMessage({ text: "Error creating note.", type: "error" });
       setTimeout(() => setMessage({ text: "", type: "" }), 3000);
     }
@@ -99,6 +112,7 @@ const Notes = () => {
             </div>
           )}
         </div>
+
         <div className="mt-8">
           <i
             className="fa-solid fa-circle-plus mb-4 cursor-pointer text-orange-500 hover:text-orange-600 text-5xl md:text-6xl fixed right-4 bottom-4 z-10"
