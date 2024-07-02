@@ -103,7 +103,7 @@ const Notes = () => {
               </div>
               <div className="overflow-y-scroll max-h-[80vh] bg-neutral-600 scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-gray-200">
                 <ul className="grid grid-cols-1 lg:grid-cols-1 gap-6 justify-items-center align-items-start">
-                  {notes.map((note) => (
+                  {notes.content.map((note) => (
                     <Note key={note.id} note={note} deleteNote={deleteNote} />
                   ))}
                 </ul>
