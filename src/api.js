@@ -2,7 +2,7 @@ import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://notenet-api-99d389ccf2f7.herokuapp.com/",
 });
 
 api.interceptors.request.use(
