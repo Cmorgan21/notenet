@@ -1,21 +1,29 @@
-import { useState } from "react";
-import api from "../api";
+import { useState, useEffect } from "react";
+import api, { handleUnauthorized } from "../api"; // Import handleUnauthorized function
 import { Link, useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import Loading from "../components/Loading";
-import SuccessMessage from "../components/SuccessMessage"; // Import the success message component
+import SuccessMessage from "../components/SuccessMessage";
 
-export default function Signin() {
+const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState({ text: "", type: "" }); // State for messages
+  const [message, setMessage] = useState({ text: "", type: "" });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const unauthorizedMessage = localStorage.getItem("unauthorizedMessage");
+    if (unauthorizedMessage) {
+      setMessage({ text: unauthorizedMessage, type: "error" });
+      localStorage.removeItem("unauthorizedMessage");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage({ text: "", type: "" }); // Clear previous messages
+    setMessage({ text: "", type: "" });
 
     try {
       const res = await api.post("/api/token/", { username, password });
@@ -85,4 +93,6 @@ export default function Signin() {
       </form>
     </div>
   );
-}
+};
+
+export default Signin;

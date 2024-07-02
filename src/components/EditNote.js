@@ -6,16 +6,28 @@ const EditNote = ({ note, onSave }) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState(note.title);
   const [body, setBody] = useState(note.body);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const handleSave = async () => {
+    setLoading(true);
+    setMessage(null);
+
     try {
       const response = await api.put(`/api/notes/update/${note.id}/`, {
         title,
         body,
       });
       onSave(response.data);
+      setMessage({ text: "Note updated successfully!", type: "success" });
     } catch (error) {
       console.error(`Error updating note with ID ${note.id}:`, error);
+      setMessage({
+        text: "Failed to update note. Please try again.",
+        type: "error",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,10 +44,18 @@ const EditNote = ({ note, onSave }) => {
             onClick={handleBack}
           >
             <i className="fas fa-arrow-left"></i>{" "}
-            {/* Assuming you have FontAwesome icons */}
           </button>
           <h2 className="text-3xl font-bold mb-4 text-center">Edit Note</h2>
         </div>
+        {message && (
+          <div
+            className={`mb-4 ${
+              message.type === "success" ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {message.text}
+          </div>
+        )}
         <div className="mb-4">
           <label
             htmlFor="title"
@@ -72,10 +92,13 @@ const EditNote = ({ note, onSave }) => {
         <div className="flex items-center justify-between">
           <button
             type="button"
-            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className={`bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             onClick={handleSave}
+            disabled={loading}
           >
-            Save
+            {loading ? "Saving..." : "Save"}
           </button>
         </div>
       </div>

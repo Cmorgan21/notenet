@@ -5,6 +5,16 @@ const api = axios.create({
   baseURL: "https://notenet-api-99d389ccf2f7.herokuapp.com/",
 });
 
+export const handleUnauthorized = () => {
+  localStorage.removeItem(ACCESS_TOKEN);
+  // Redirect to sign-in page and set a message in localStorage
+  localStorage.setItem(
+    "unauthorizedMessage",
+    "Your session has expired. Please sign in again."
+  );
+  window.location.replace("/signin");
+};
+
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem(ACCESS_TOKEN);
@@ -17,11 +27,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-export const handleUnauthorized = () => {
-  localStorage.removeItem(ACCESS_TOKEN);
-  window.location.replace("/signin");
-};
 
 api.interceptors.response.use(
   (response) => {
