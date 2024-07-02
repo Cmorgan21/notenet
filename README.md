@@ -214,6 +214,16 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 
 ![Sign out](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872703/Screenshot_2024-07-01_230934_qgkuz9.png)
 
+### Success Messages
+
+These were used throughout the whole project to ensure te user was informed of anything that is submitted and correct. This is also used for errors.
+
+Green has been used for successful messages and Red has been used for errors.
+
+![Success Message](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719955677/Screenshot_2024-07-02_221922_xm9r63.png)
+
+![Error Message](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719955677/Screenshot_2024-07-02_222708_vq2kiz.png)
+
 ### Future Features
 
 1. **Real-time User Interactions**
@@ -228,6 +238,8 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 ## The Skeleton Plane
 
 ### Wireframes
+
+All wireframes have been used as a guideline to creating notenet. All wireframes include a desktop and a mobile version to ensure solid guidelines to a fully user friendly and responsive website
 
 #### Home Page
 
@@ -273,7 +285,7 @@ Notenet has used very neutral but effective color scheme to keep the website sim
 
 #### Typography
 
-In the "Animal Gram" project, the fonts "DM Sans" and "Lobster" have been thoughtfully chosen to enhance the visual aesthetics and readability of the platform.
+In the "Notenet" project, the fonts "Cabin" and "Arimo" have been thoughtfully chosen to enhance the visual aesthetics and readability of the platform.
 
 - **Cabin**, sans-serif
 - **Arimo**, sans-serif
@@ -291,7 +303,7 @@ This is used for the Navigation Menu
 
 - The icons were imported from [Font Awesome](https://fontawesome.com/).
 
-- The no notes found maskot that was made - was created from [canva](https://canva.com)
+- The no notes found maskot that was made and the notenet logo - was created from [canva](https://canva.com)
 
 ## Testing
 
@@ -334,6 +346,7 @@ Notenets testing all done [here](TESTING.md)
 - [HTML Validation](https://validator.w3.org/) - Used to validate HTML code
 - [CSS Validation](https://jigsaw.w3.org/css-validator/) - Used to validate CSS code
 - [JSHint Validation](https://jshint.com/) - Used to validate JavaScript code
+- JEST - For unit testing of all forms and code
 - [Unsplash](https://unsplash.com/) - Free stock image provider for posts and avatars that were uploaded
 
 ## Libraries
@@ -554,6 +567,7 @@ To clone and set up this project you need to follow the steps below.
 - [Stack Overflow](https://stackoverflow.com/) - For troubleshooting and FAQ.
 - [W3Schools](https://www.w3schools.com/) - Online Web Tutorials.
 - [YouTube](https://www.youtube.com) - Extensive in-depth tutorials for React and Django Rest to reiterate the principles and using both languages together.
+- [Map function error](https://stackoverflow.com/questions/30803168/data-map-is-not-a-function) for the understanding of the .map function error
 
 ## Acknowledgments
 
