@@ -10,10 +10,10 @@ Live Website: [Notenet](https://animalgram-880788cab506.herokuapp.com/)
 
 ## Table Of Contents
 
-- [User Experience Design (UX)](#user-experience-design-ux)
+- [User Experience Design (UX)](#ux)
 - [The Strategy Plane](#the-strategy-plane)
 - [Project Objective](#project-objective)
-- [Agile Project Management](#agile-project-management)
+- [Agile Project Management](#agile-management)
 - [User Stories](#user-stories)
 - [The Structure Plane](#the-structure-plane)
 - [Project Structure](#project-structure)
@@ -24,11 +24,13 @@ Live Website: [Notenet](https://animalgram-880788cab506.herokuapp.com/)
 - [Database Structure](#database-structure)
 - [The Surface Plane](#the-surface-plane)
 - [Design](#design)
-- [Technologies Used Frontend](#technologies-used-frontend)
-- [Technologies Used Backend](#technologies-used-backend)
 - [Testing](#testing)
-- [Deployment](#deployment)
+- [Technologies Used](#technologies-used)
+- [Libraries](#libraries)
+- [Front-end Deployment](#deployment-frontend)
+- [Back-end Deployment](#deployment-backend)
 - [Credits](#credits)
+- [Acknowledgments](#acknowledgments)
 
 ## UX
 
@@ -46,7 +48,7 @@ This project was managed through the application of agile methodologies, establi
 
 The development process was anchored in a step-by-step approach. It commenced by focusing on fulfilling the must-have requirements to ensure the delivery of core functionalities.
 
-Subsequently, the “should-have” features were addressed, followed by the incorporation of the “could-have” elements. This approach prioritized essential project prerequisites while allowing the integration of desirable features in an iterative, capacity-based manner.
+This was designated through labels of 'high priority', 'medium priority' and 'low priority'
 
 ### User Stories
 
@@ -245,7 +247,7 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 
 ### Database Structure
 
-I've meticulously crafted the database structure for the Animal Gram Backend API. Here are the core models:
+I've crafted the database structure for the Notenet Backend API. Here are the core models:
 
 - **User:** These are slightly customized from Django's standard User model to align with our requirements.
 - **Profile:** Automatically generated upon user registration, these profiles are tailored to encompass essential information.
@@ -278,9 +280,10 @@ In the "Animal Gram" project, the fonts "DM Sans" and "Lobster" have been though
 
 These fonts are sourced from [Google Fonts](https://fonts.google.com/).
 
-**DM Sans** is a modern and highly legible font. Its clean, geometric design offers exceptional clarity and readability, making it accessible to a wide audience. DM Sans also gives a very sophisticated look and makes the website look professional
+**Cabin** is a modern and highly legible font. Its clean, geometric design offers exceptional clarity and readability, making it accessible to a wide audience. This also gives a very sophisticated look and makes the website look professional.
+This is used for the Navigation Menu
 
-**Lobster** adds a touch of elegance and uniqueness to the design. Its playful and cursive style provides a distinctive look that enhances the overall aesthetic appeal of the platform.
+**Arimo** This provides a distinctive, but simplistic look that enhances the overall aesthetic appeal of the platform.
 
 #### Imagery
 
@@ -310,7 +313,7 @@ Notenets testing all done [here](TESTING.md)
 - React
 - Django (REST)
 - [React Bootstrap](https://react-bootstrap.github.io/) - A CSS framework that helps build solid, responsive, mobile-first sites
-- [Tailwind]() A css framework that helps build applications
+- [Tailwind](https://tailwindcss.com/) A css framework that helps build applications
 
 #### Applications
 
@@ -333,7 +336,7 @@ Notenets testing all done [here](TESTING.md)
 - [JSHint Validation](https://jshint.com/) - Used to validate JavaScript code
 - [Unsplash](https://unsplash.com/) - Free stock image provider for posts and avatars that were uploaded
 
-### Libraries
+## Libraries
 
 The libraries used in this project are located in the requirements.txt file and have been documented below:
 
