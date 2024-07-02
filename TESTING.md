@@ -1,17 +1,13 @@
 # Table of Contents
 
 1. [Frontend Testing](#frontend-testing)
-
    - [Code Validator Checks](#code-validator-checks)
-
      - [W3C HTML Validation Results](#w3c-html-validation-results)
      - [W3C CSS Validation Results](#w3c-css-validation-results)
-     - [Jslint](#w3c-css-validation-results)
-
+     - [Jslint](#jslint)
    - [Lighthouse Testing](#lighthouse-testing)
    - [Automated Testing](#automated-testing)
    - [Browser Compatibility](#browser-compatibility)
-
 2. [Backend Testing](#backend-testing)
    - [Unit Testing](#unit-testing)
    - [Pylint](#pylint)

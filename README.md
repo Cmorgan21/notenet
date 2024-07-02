@@ -1,6 +1,6 @@
 # Notenet
 
-![Responsive Mockup]()
+![Responsive Mockup](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952316/Screenshot_2024-07-02_213139_zxqenc.png)
 
 ## Project Objective
 
@@ -361,7 +361,6 @@ The libraries used in this project are located in the requirements.txt file and 
 - [pytz](https://pypi.org/project/pytz/) - This is a set of Python packages to support use of the OpenID decentralized identity system in your application, update to Python 3.
 - [requests-oauhlib](https://pypi.org/project/requests-oauthlib/) - Provides first-class OAuth library support for Requests.
 - [sqlparse](https://pypi.org/project/sqlparse/) - sqlparse is a non-validating SQL parser for Python.
-- []
 
 ## Deployment Frontend
 
