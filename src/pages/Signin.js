@@ -12,7 +12,6 @@ export default function Signin() {
   const [message, setMessage] = useState({ text: "", type: "" });
   const navigate = useNavigate();
 
-  // Check for unauthorized message on mount
   useEffect(() => {
     const unauthorizedMessage = localStorage.getItem("unauthorizedMessage");
     if (unauthorizedMessage) {

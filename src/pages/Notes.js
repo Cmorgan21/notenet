@@ -23,7 +23,6 @@ const Notes = () => {
         return "No notes found";
       }
       setNotes(response.data.results);
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
