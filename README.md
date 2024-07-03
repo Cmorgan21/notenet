@@ -52,6 +52,10 @@ This was designated through labels of 'high priority', 'medium priority' and 'lo
 
 ### User Stories
 
+You can view the user stories board here: [User Stories Board](https://github.com/users/Cmorgan21/projects/7)
+
+All Project User stories have been referenced using a number within the table to the number within the project board. User stories have been used as a guide line to ensure all content is use friendly and all criteria is met.
+
 | #   | User Story          | Description                                                                                                                                               |
 | --- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | **Sign up**         | As a new user I can sign up and create an account to receive the benefit of personalizing my note-taking experience.                                      |
@@ -232,24 +236,30 @@ Green has been used for successful messages and Red has been used for errors.
 
 ### Website Responsiveness
 
-Here within the mobile responsiveness section is to display all content is adaptable to Desktop, Tablet, Phone. Below are Photos of all pages with a mobile responsiveness to display UX and that it is user friendly to all
+This section demonstrates the mobile responsiveness of the website, showcasing how the content adapts seamlessly to Desktop, Tablet, and Phone screens. Below are screenshots of all pages with mobile responsiveness, highlighting the user-friendly UX across different devices.
 
-Home
+#### Home
+
 ![Home Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042067/Screenshot_2024-07-03_222545_kwk7xs.png)
 
-Profile
+#### Profile
+
 ![Profile Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042067/Screenshot_2024-07-03_222627_stbasj.png)
 
-Notes
+#### Notes
+
 ![Notes Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222612_jhej4d.png)
 
-Notes Detail
+#### Notes Detail
+
 ![Notes Detail Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222730_ru9c6f.png)
 
-Sign in
+#### Sign In
+
 ![Sign in Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222640_asktuo.png)
 
-Sign up
+#### Sign Up
+
 ![Sign up Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222648_vcwrma.png)
 
 ### Future Features
@@ -370,7 +380,7 @@ Notenets testing all done [here](TESTING.md)
 - [Heroku](https://en.wikipedia.org/wiki/Heroku) - A cloud platform that the application is deployed to
 - [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used to test site performance
 - [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/) - Used to debug and test responsiveness
-- [Cloudinary](https://cloudinary.com/) - A service that hosts image files in the project.
+- [Cloudinary](https://cloudinary.com/) - A service that hosts image and video files in the project.
 - [HTML Validation](https://validator.w3.org/) - Used to validate HTML code
 - [CSS Validation](https://jigsaw.w3.org/css-validator/) - Used to validate CSS code
 - [JSHint Validation](https://jshint.com/) - Used to validate JavaScript code
@@ -402,6 +412,7 @@ The libraries used in this project are located in the requirements.txt file and 
 - [pytz](https://pypi.org/project/pytz/) - This is a set of Python packages to support use of the OpenID decentralized identity system in your application, update to Python 3.
 - [requests-oauhlib](https://pypi.org/project/requests-oauthlib/) - Provides first-class OAuth library support for Requests.
 - [sqlparse](https://pypi.org/project/sqlparse/) - sqlparse is a non-validating SQL parser for Python.
+- [tailwind](https://tailwindcss.com/) - used as a framework for styling css content
 
 ## Deployment Frontend
 
@@ -596,6 +607,7 @@ To clone and set up this project you need to follow the steps below.
 - [W3Schools](https://www.w3schools.com/) - Online Web Tutorials.
 - [YouTube](https://www.youtube.com) - Extensive in-depth tutorials for React and Django Rest to reiterate the principles and using both languages together.
 - [Map function error](https://stackoverflow.com/questions/30803168/data-map-is-not-a-function) for the understanding of the .map function error
+- [Cloudinary](https://cloudinary.com/) for the video tutorials of how to upload saves images to a database and the different configurations for doing it
 
 ## Acknowledgments
 
