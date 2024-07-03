@@ -34,7 +34,11 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response && error.response.status === 401) {
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !error.config.url.includes("/api/token/")
+    ) {
       handleUnauthorized();
     }
     return Promise.reject(error);
