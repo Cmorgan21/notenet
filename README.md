@@ -115,6 +115,12 @@ Logged-in users can create notes and add to their profile and logged out users c
 
 ## Features
 
+### Web Title and Logo
+
+The Web Url contains a favicon and a specific name called 'notenet'. This is to further customize the website to look more professional and enhance the user experience
+
+![Web title and logo](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720041413/Screenshot_2024-07-03_221613_ozhsv1.png)
+
 ### Navigation
 
 The navigation bar boasts an elegant and minimalist design, ensuring an exceptional user experience. Its appearance dynamically adapts based on your authentication status. On tablets and mobile devices, the navigation bar transforms into a user-friendly hamburger menu.
@@ -223,6 +229,28 @@ Green has been used for successful messages and Red has been used for errors.
 ![Success Message](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719955677/Screenshot_2024-07-02_221922_xm9r63.png)
 
 ![Error Message](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719955677/Screenshot_2024-07-02_222708_vq2kiz.png)
+
+### Website Responsiveness
+
+Here within the mobile responsiveness section is to display all content is adaptable to Desktop, Tablet, Phone. Below are Photos of all pages with a mobile responsiveness to display UX and that it is user friendly to all
+
+Home
+![Home Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042067/Screenshot_2024-07-03_222545_kwk7xs.png)
+
+Profile
+![Profile Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042067/Screenshot_2024-07-03_222627_stbasj.png)
+
+Notes
+![Notes Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222612_jhej4d.png)
+
+Notes Detail
+![Notes Detail Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222730_ru9c6f.png)
+
+Sign in
+![Sign in Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222640_asktuo.png)
+
+Sign up
+![Sign up Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222648_vcwrma.png)
 
 ### Future Features
 
