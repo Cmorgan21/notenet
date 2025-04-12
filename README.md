@@ -6,7 +6,7 @@
 
 **Notenet** is a online application that allows users to create, update and delete notes. This is to keep everything within your day to day life noted. This means everything you need to keep on top of in your day to day is at the click of a finger
 
-Live Website: [Notenet](https://animalgram-880788cab506.herokuapp.com/)
+Live Website: [Notenet](https://notenet-7107311aceb5.herokuapp.com)
 
 ## Table Of Contents
 
