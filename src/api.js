@@ -2,7 +2,7 @@ import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
 const api = axios.create({
-  baseURL: "https://notenet-api-99d389ccf2f7.herokuapp.com/",
+  baseURL: "https://notenet-drf-16de1359cbd6.herokuapp.com/",
 });
 
 export const handleUnauthorized = () => {
