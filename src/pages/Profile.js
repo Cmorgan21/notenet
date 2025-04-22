@@ -90,6 +90,13 @@ const Profile = () => {
     return <Loading />;
   }
 
+  // Ensure we handle missing data for the profile
+  const profileName = profile?.name || "No name available";
+  const profileEmail = profile?.email || "No email available";
+  const profileCreatedAt = profile?.created_at
+    ? new Date(profile.created_at).toLocaleDateString()
+    : "No creation date available";
+
   return (
     <div className="text-center flex flex-col items-center bg-neutral-600 text-white min-h-screen pt-4 relative md:justify-center">
       <div className="absolute top-4 right-4">
@@ -116,10 +123,10 @@ const Profile = () => {
           </div>
         )}
       </div>
-      <div className="border-2 border-neutral-400 p-6  md:p-20 shadow-lg rounded-lg mt-14">
+      <div className="border-2 border-neutral-400 p-6 md:p-20 shadow-lg rounded-lg mt-14">
         <div className="relative flex items-center justify-center">
           <img
-            src={profile.image}
+            src={profile?.image}
             alt="Profile"
             className="rounded-full h-40 w-40 md:h-60 md:w-60 object-cover bg-orange-500 transform transition-transform hover:scale-105"
           />
@@ -138,14 +145,13 @@ const Profile = () => {
         </div>
         <h2 className="text-xl md:text-2xl mt-4">Your Profile</h2>
         <p className="mt-2">
-          <strong>Name:</strong> {profile.name}
+          <strong>Name:</strong> {profileName}
         </p>
         <p className="mt-2">
-          <strong>Email:</strong> {profile.email}
+          <strong>Email:</strong> {profileEmail}
         </p>
         <p className="mt-2">
-          <strong>Created at:</strong>{" "}
-          {new Date(profile.created_at).toLocaleDateString()}
+          <strong>Created at:</strong> {profileCreatedAt}
         </p>
         {imageSelected && (
           <p className="mt-2 text-orange-500">
