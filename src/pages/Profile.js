@@ -20,7 +20,11 @@ const Profile = () => {
         setProfile(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching profile:", error);
+        console.error(
+          "Error fetching profile:",
+          error.response ? error.response.data : error.message
+        );
+        setLoading(false);
       }
     };
 
@@ -39,7 +43,10 @@ const Profile = () => {
       setProfile(response.data);
       console.log("Username updated:", response.data);
     } catch (error) {
-      console.error("Error updating username:", error);
+      console.error(
+        "Error updating username:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
@@ -50,7 +57,10 @@ const Profile = () => {
       });
       console.log("Password updated successfully", response.data);
     } catch (error) {
-      console.error("Error updating password:", error);
+      console.error(
+        "Error updating password:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
@@ -69,7 +79,10 @@ const Profile = () => {
       setImageSelected(false);
       console.log("Image updated:", response.data);
     } catch (error) {
-      console.error("Error:", error);
+      console.error(
+        "Error uploading image:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
