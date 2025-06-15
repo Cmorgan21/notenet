@@ -16,17 +16,26 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} exact="true" />
         <Route path="/signin" element={<Signin />} exact="true" />
+
         <Route
           path="/notes"
           element={
             <ProtectedRoute>
               <Notes />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute>
               <Categories />
             </ProtectedRoute>
           }
         />
-        <Route path="/profile" element={<Profile />} />
 
+        <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} exact="true" />
         <Route path="/notes/:id" element={<NoteDetail />} />
       </Routes>

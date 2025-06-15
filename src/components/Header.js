@@ -69,6 +69,16 @@ const Header = () => {
             <>
               <li className="hover:font-bold p-2 md:p-0 lg:text-2xl">
                 <NavLink
+                  to="/categories"
+                  className={({ isActive }) =>
+                    isActive ? "text-orange-500" : ""
+                  }
+                >
+                  Categories<i className="fa-solid fa-folder-open ml-2"></i>
+                </NavLink>
+              </li>
+              <li className="hover:font-bold p-2 md:p-0 lg:text-2xl">
+                <NavLink
                   to="/profile"
                   className={({ isActive }) =>
                     isActive ? "text-orange-500" : ""
