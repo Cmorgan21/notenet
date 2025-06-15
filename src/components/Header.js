@@ -38,7 +38,7 @@ const Header = () => {
       <nav className="h-16 md:h-20 lg:h-24 flex justify-between items-center px-4 md:px-8 lg:px-12 relative">
         <NavLink to="/">
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold ">
-            NoteNet<i class="fa-solid fa-hashtag mx-2 "></i>
+            NoteNet<i className="fa-solid fa-hashtag mx-2 "></i>
           </h1>
         </NavLink>
         <button className="text-white md:hidden" onClick={toggleMenu}>
