@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Notes from "./pages/Notes";
 import NoteDetail from "./components/NoteDetail";
 import Profile from "./pages/Profile";
+import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           element={
             <ProtectedRoute>
               <Notes />
+              <Categories />
             </ProtectedRoute>
           }
         />
