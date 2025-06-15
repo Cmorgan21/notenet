@@ -25,10 +25,9 @@ export default function Signup() {
         navigate("/signin");
       }, 3000);
     } catch (error) {
+      const errorData = error.response?.data;
       const errorMessage =
-        error.response.data.username ||
-        error.response.data.email ||
-        error.response.data.password ||
+        (errorData && Object.values(errorData).flat().join(" ")) ||
         "An error occurred. Please try again.";
       setMessage({ text: errorMessage, type: "error" });
     } finally {
