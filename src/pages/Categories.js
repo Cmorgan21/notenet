@@ -14,3 +14,18 @@ export default function Categories() {
     color: "#ffffff",
   });
 }
+
+const fetchCategories = async () => {
+  setLoading(true);
+  try {
+    const res = await api.get("/api/categories/");
+    setCategories(res.data);
+  } catch (error) {
+    setMessage({
+      text: error.response?.data.detail || "Failed to fetch categories",
+      type: "error",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
