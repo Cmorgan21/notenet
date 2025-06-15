@@ -6,34 +6,39 @@ import SuccessMessage from "../components/SuccessMessage";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [isFormLoaded, setIsFormLoaded] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
-  const [categories, setCategories] = useState([]);
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState(""); // empty means no filter
-  const [selectedCategoryForNote, setSelectedCategoryForNote] = useState(""); // for new note form
 
   useEffect(() => {
     getNotes();
+    fetchCategories();
   }, []);
 
   const getNotes = async () => {
     try {
       const response = await api.get("/api/notes/");
-      if (response === null) {
-        setNotes([]);
-        return "No notes found";
-      }
-      setNotes(response.data.results);
+      setNotes(response?.data?.results || []);
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const res = await api.get("/api/categories/");
+      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+      setCategories(data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
   const deleteNote = async (id) => {
     try {
-      console.log(`Attempting to delete note with id: ${id}`);
       const response = await api.delete(`/api/delete-note/${id}/`);
       if (response.status === 204) {
         setMessage({ text: "Note deleted!", type: "success" });
@@ -55,7 +60,11 @@ const Notes = () => {
     try {
       const response = await api.post(
         "/api/create-note/",
-        { title, body },
+        {
+          title,
+          body,
+          category: selectedCategory || null,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -65,9 +74,10 @@ const Notes = () => {
       if (response.status === 201) {
         setMessage({ text: "Note created successfully!", type: "success" });
         setTimeout(() => setMessage({ text: "", type: "" }), 3000);
-        setTitle(""); // Reset title field
-        setBody(""); // Reset body field
-        setIsFormLoaded(false); // Close the form
+        setTitle("");
+        setBody("");
+        setSelectedCategory("");
+        setIsFormLoaded(false);
         getNotes();
       } else {
         setMessage({ text: "Failed to create note.", type: "error" });
@@ -121,6 +131,7 @@ const Notes = () => {
             className="fa-solid fa-circle-plus mb-4 cursor-pointer text-orange-500 hover:text-orange-600 text-5xl md:text-6xl fixed right-4 bottom-4 z-10"
             onClick={() => setIsFormLoaded(!isFormLoaded)}
           ></i>
+
           {isFormLoaded && (
             <div className="fixed inset-0 bg-white bg-opacity-50 z-50 flex items-center justify-center">
               <form
@@ -144,6 +155,29 @@ const Notes = () => {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                 </div>
+
+                <div className="mb-4">
+                  <label
+                    htmlFor="category"
+                    className="block text-white text-sm font-bold mb-2"
+                  >
+                    Category:
+                  </label>
+                  <select
+                    id="category"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  >
+                    <option value="">Select a category</option>
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 <div className="mb-6">
                   <label
                     htmlFor="content"
@@ -160,6 +194,7 @@ const Notes = () => {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none"
                   ></textarea>
                 </div>
+
                 <div className="flex items-center justify-between">
                   <button
                     type="submit"
