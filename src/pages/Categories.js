@@ -33,3 +33,23 @@ const fetchCategories = async () => {
 const handleNewCategoryChange = (e) => {
   setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
 };
+
+const handleAddCategory = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setMessage({ text: "", type: "" });
+
+  try {
+    await api.post("/api/categories/", newCategory);
+    setMessage({ text: "Category added!", type: "success" });
+    setNewCategory({ name: "", description: "", color: "#ffffff" });
+    fetchCategories();
+  } catch (error) {
+    setMessage({
+      text: error.response?.data.detail || "Failed to add category",
+      type: "error",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
