@@ -29,3 +29,7 @@ const fetchCategories = async () => {
     setLoading(false);
   }
 };
+
+const handleNewCategoryChange = (e) => {
+  setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
+};
