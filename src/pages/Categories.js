@@ -22,12 +22,19 @@ export default function Categories() {
     setLoading(true);
     try {
       const res = await api.get("/api/categories/");
-      setCategories(res.data);
+      console.log("Categories API response:", res.data); // 👈 LOGGING HERE
+
+      // Check if it's an array or wrapped in an object like { results: [...] }
+      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+
+      setCategories(data);
     } catch (error) {
+      console.error("Category fetch error:", error); // 👈 ERROR LOGGING
       setMessage({
-        text: error.response?.data.detail || "Failed to fetch categories",
+        text: error.response?.data?.detail || "Failed to fetch categories",
         type: "error",
       });
+      setCategories([]); // prevent crash
     } finally {
       setLoading(false);
     }
