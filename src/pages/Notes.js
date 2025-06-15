@@ -10,6 +10,9 @@ const Notes = () => {
   const [title, setTitle] = useState("");
   const [isFormLoaded, setIsFormLoaded] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+  const [categories, setCategories] = useState([]);
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState(""); // empty means no filter
+  const [selectedCategoryForNote, setSelectedCategoryForNote] = useState(""); // for new note form
 
   useEffect(() => {
     getNotes();
