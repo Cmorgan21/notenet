@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import api from "../api";
 import { ACCESS_TOKEN } from "../constants";
 
@@ -8,7 +8,10 @@ const Header = () => {
   const [profile, setProfile] = useState(null);
   const isLoggedIn = !!localStorage.getItem(ACCESS_TOKEN);
   const navigate = useNavigate();
+  const location = useLocation();
+  const navRef = useRef();
 
+  // Fetch user profile if logged in
   useEffect(() => {
     if (isLoggedIn) {
       const fetchProfile = async () => {
@@ -19,52 +22,83 @@ const Header = () => {
           console.error("Error fetching profile:", error);
         }
       };
-
       fetchProfile();
     }
   }, [isLoggedIn]);
+
+  // Collapse menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  // Collapse menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isOpen && navRef.current && !navRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
+  // Toggle body class to prevent content from being hidden
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", isOpen);
+  }, [isOpen]);
 
   const handleLogout = () => {
     localStorage.removeItem(ACCESS_TOKEN);
     navigate("/signin");
   };
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
-    <header className="bg-neutral-700 text-white shadow-md font-arimo">
-      <nav className="h-16 md:h-20 lg:h-24 flex justify-between items-center px-4 md:px-8 lg:px-12 relative">
-        <NavLink to="/">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold ">
-            NoteNet<i className="fa-solid fa-hashtag mx-2 "></i>
+    <header className="bg-neutral-700 text-white shadow-md font-arimo fixed top-0 left-0 w-full z-50">
+      <nav
+        ref={navRef}
+        className="h-16 md:h-20 lg:h-24 flex justify-between items-center px-4 md:px-8 lg:px-12 relative"
+      >
+        <NavLink to="/" onClick={() => setIsOpen(false)}>
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
+            NoteNet
+            <i className="fa-solid fa-hashtag mx-2" />
           </h1>
         </NavLink>
+
         <button className="text-white md:hidden" onClick={toggleMenu}>
-          <i className={`fa ${isOpen ? "fa-times" : "fa-bars"} fa-lg`}></i>
+          <i className={`fa ${isOpen ? "fa-times" : "fa-bars"} fa-lg`} />
         </button>
+
         <ul
-          className={`md:flex md:items-center md:gap-4 z-50 md:static absolute top-16 left-0 w-full md:w-auto bg-neutral-700 md:bg-transparent font-sans ${
-            isOpen ? "block border-y-2 border-y-slate-200" : "hidden"
+          className={`md:flex md:items-center md:gap-4 z-50 md:static absolute top-full left-0 w-full md:w-auto bg-neutral-700 md:bg-transparent font-sans transition-max-height duration-300 overflow-hidden ${
+            isOpen ? "max-h-96" : "max-h-0"
           }`}
         >
           <li className="hover:font-bold p-2 md:p-0 lg:text-2xl">
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "text-orange-500" : "")}
+              onClick={() => setIsOpen(false)}
             >
-              Home<i className="fa-solid fa-house ml-2"></i>
+              Home
+              <i className="fa-solid fa-house ml-2" />
             </NavLink>
           </li>
+
           <li className="hover:font-bold p-2 md:p-0 lg:text-2xl">
             <NavLink
               to="/notes"
               className={({ isActive }) => (isActive ? "text-orange-500" : "")}
+              onClick={() => setIsOpen(false)}
             >
-              Notes<i className="fa-regular fa-note-sticky ml-2"></i>
+              Notes
+              <i className="fa-regular fa-note-sticky ml-2" />
             </NavLink>
           </li>
+
           {isLoggedIn ? (
             <>
               <li className="hover:font-bold p-2 md:p-0 lg:text-2xl">
@@ -73,26 +107,39 @@ const Header = () => {
                   className={({ isActive }) =>
                     isActive ? "text-orange-500" : ""
                   }
+                  onClick={() => setIsOpen(false)}
                 >
-                  Categories<i className="fa-solid fa-folder-open ml-2"></i>
+                  Categories
+                  <i className="fa-solid fa-folder-open ml-2" />
                 </NavLink>
               </li>
+
               <li className="hover:font-bold p-2 md:p-0 lg:text-2xl">
                 <NavLink
                   to="/profile"
                   className={({ isActive }) =>
                     isActive ? "text-orange-500" : ""
                   }
+                  onClick={() => setIsOpen(false)}
                 >
-                  Profile<i className="fa-regular fa-user ml-2"></i>
+                  Profile
+                  <i className="fa-regular fa-user ml-2" />
                 </NavLink>
               </li>
+
               <li className="hover:font-bold p-2 md:p-0 lg:text-2xl">
-                <button onClick={handleLogout} className="cursor-pointer">
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                  className="cursor-pointer"
+                >
                   Logout
-                  <i className="fa-solid fa-person-walking-arrow-right ml-2"></i>
+                  <i className="fa-solid fa-person-walking-arrow-right ml-2" />
                 </button>
               </li>
+
               {profile && (
                 <li className="hover:font-bold p-2 md:p-0">
                   <img
@@ -110,8 +157,10 @@ const Header = () => {
                 className={({ isActive }) =>
                   isActive ? "text-orange-500" : ""
                 }
+                onClick={() => setIsOpen(false)}
               >
-                Login<i className="fa-regular fa-user ml-2"></i>
+                Login
+                <i className="fa-regular fa-user ml-2" />
               </NavLink>
             </li>
           )}
