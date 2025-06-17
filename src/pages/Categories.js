@@ -21,6 +21,12 @@ export default function Categories() {
     color: "#ffffff",
   });
 
+  // Helper to show message and clear it after a timeout
+  const showMessage = (text, type = "success", duration = 3000) => {
+    setMessage({ text, type });
+    setTimeout(() => setMessage({ text: "", type: "" }), duration);
+  };
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -32,10 +38,10 @@ export default function Categories() {
       const data = Array.isArray(res.data) ? res.data : res.data.results || [];
       setCategories(data);
     } catch (error) {
-      setMessage({
-        text: error.response?.data?.detail || "Failed to fetch categories",
-        type: "error",
-      });
+      showMessage(
+        error.response?.data?.detail || "Failed to fetch categories",
+        "error"
+      );
       setCategories([]);
     } finally {
       setLoading(false);
@@ -53,14 +59,14 @@ export default function Categories() {
 
     try {
       await api.post("/api/categories/", newCategory);
-      setMessage({ text: "Category added!", type: "success" });
+      showMessage("Category added!", "success");
       setNewCategory({ name: "", description: "", color: "#ffffff" });
       fetchCategories();
     } catch (error) {
-      setMessage({
-        text: error.response?.data.detail || "Failed to add category",
-        type: "error",
-      });
+      showMessage(
+        error.response?.data.detail || "Failed to add category",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -93,14 +99,14 @@ export default function Categories() {
 
     try {
       await api.put(`/api/categories/${id}/`, editCategoryData);
-      setMessage({ text: "Category updated!", type: "success" });
+      showMessage("Category updated!", "success");
       setEditingId(null);
       fetchCategories();
     } catch (error) {
-      setMessage({
-        text: error.response?.data.detail || "Failed to update category",
-        type: "error",
-      });
+      showMessage(
+        error.response?.data.detail || "Failed to update category",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -115,13 +121,13 @@ export default function Categories() {
 
     try {
       await api.delete(`/api/categories/${id}/`);
-      setMessage({ text: "Category deleted!", type: "success" });
+      showMessage("Category deleted!", "success");
       fetchCategories();
     } catch (error) {
-      setMessage({
-        text: error.response?.data.detail || "Failed to delete category",
-        type: "error",
-      });
+      showMessage(
+        error.response?.data.detail || "Failed to delete category",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
