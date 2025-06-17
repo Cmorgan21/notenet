@@ -10,15 +10,26 @@ const Note = ({ note, deleteNote }) => {
   return (
     <li className="w-full bg-neutral-600 text-white shadow-lg border-neutral-500 border-2 rounded-lg p-4 sm:p-6 lg:p-28 font-arimo">
       <div className="flex flex-col justify-between h-full">
-        <div>
+        <div className="flex items-center space-x-3">
+          {/* Category Color Circle */}
+          {note.category && note.category.color && (
+            <div
+              style={{ backgroundColor: note.category.color }}
+              className="w-6 h-6 rounded-full border border-white"
+              title={note.category.name}
+            ></div>
+          )}
+
           <h3 className="text-2xl sm:text-3xl lg:text-5xl">{note.title}</h3>
-          <p className="my-2 text-sm sm:text-base lg:text-3xl">
-            {note.body ? `${note.body.substring(0, 30)}...` : ""}
-          </p>
-          <p className="my-2 text-sm sm:text-base lg:text-xl">
-            Created on: {formatDate(note.created_on)}
-          </p>
         </div>
+
+        <p className="my-2 text-sm sm:text-base lg:text-3xl">
+          {note.body ? `${note.body.substring(0, 30)}...` : ""}
+        </p>
+        <p className="my-2 text-sm sm:text-base lg:text-xl">
+          Created on: {formatDate(note.created_on)}
+        </p>
+
         <div className="flex items-center mt-4">
           <Link
             to={`/notes/${note.id}`}
