@@ -1,4 +1,3 @@
-// components/Note.js
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -13,13 +12,6 @@ const Note = ({ note, deleteNote }) => {
       <div className="flex flex-col justify-between h-full">
         <div>
           <h3 className="text-2xl sm:text-3xl lg:text-5xl">{note.title}</h3>
-
-          {note.category && (
-            <span className="inline-block mt-2 mb-4 text-xs px-2 py-1 bg-orange-500 text-white rounded-full">
-              {note.category.name}
-            </span>
-          )}
-
           <p className="my-2 text-sm sm:text-base lg:text-3xl">
             {note.body ? `${note.body.substring(0, 30)}...` : ""}
           </p>
@@ -27,7 +19,6 @@ const Note = ({ note, deleteNote }) => {
             Created on: {formatDate(note.created_on)}
           </p>
         </div>
-
         <div className="flex items-center mt-4">
           <Link
             to={`/notes/${note.id}`}

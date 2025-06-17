@@ -10,22 +10,24 @@ const Notes = () => {
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [filterCategory, setFilterCategory] = useState("all");
   const [isFormLoaded, setIsFormLoaded] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
 
   useEffect(() => {
+    const getNotes = async () => {
+      try {
+        const response = await api.get("/api/notes/");
+        const data = response?.data?.results || response?.data || [];
+        setNotes(data);
+      } catch (error) {
+        console.error("Error fetching notes:", error);
+      }
+    };
+
     getNotes();
     fetchCategories();
   }, []);
-
-  const getNotes = async () => {
-    try {
-      const response = await api.get("/api/notes/");
-      setNotes(response?.data?.results || []);
-    } catch (error) {
-      console.error("Error fetching notes:", error);
-    }
-  };
 
   const fetchCategories = async () => {
     try {
@@ -43,7 +45,8 @@ const Notes = () => {
       if (response.status === 204) {
         setMessage({ text: "Note deleted!", type: "success" });
         setTimeout(() => setMessage({ text: "", type: "" }), 3000);
-        getNotes();
+        const refreshedNotes = await api.get("/api/notes/");
+        setNotes(refreshedNotes?.data?.results || []);
       } else {
         setMessage({ text: "Failed to delete note.", type: "error" });
         setTimeout(() => setMessage({ text: "", type: "" }), 3000);
@@ -63,7 +66,7 @@ const Notes = () => {
         {
           title,
           body,
-          category: selectedCategory || null,
+          category_id: selectedCategory || null,
         },
         {
           headers: {
@@ -78,7 +81,9 @@ const Notes = () => {
         setBody("");
         setSelectedCategory("");
         setIsFormLoaded(false);
-        getNotes();
+
+        const refreshedNotes = await api.get("/api/notes/");
+        setNotes(refreshedNotes?.data?.results || []);
       } else {
         setMessage({ text: "Failed to create note.", type: "error" });
         setTimeout(() => setMessage({ text: "", type: "" }), 3000);
@@ -88,6 +93,13 @@ const Notes = () => {
       setTimeout(() => setMessage({ text: "", type: "" }), 3000);
     }
   };
+
+  const filteredNotes =
+    filterCategory === "all"
+      ? notes
+      : notes.filter((note) => {
+          return note.category && note.category.id === parseInt(filterCategory);
+        });
 
   return (
     <div className="bg-neutral-600 min-h-screen flex items-center justify-center text-white py-8 md:py-16 font-arimo">
@@ -99,8 +111,24 @@ const Notes = () => {
             onClose={() => setMessage({ text: "", type: "" })}
           />
         )}
+
         <div className="notes">
-          {notes.length === 0 ? (
+          <div className="mb-6 flex justify-center">
+            <select
+              className="shadow appearance-none border rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={filterCategory}
+              onChange={(e) => setFilterCategory(e.target.value)}
+            >
+              <option value="all">All Categories</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {filteredNotes.length === 0 ? (
             <div className="text-center flex flex-col items-center justify-center">
               <p className="text-3xl">No notes found.</p>
               <img src={logo} alt="Notes" className="w-64 h-64 mt-4" />
@@ -117,7 +145,7 @@ const Notes = () => {
               </div>
               <div className="overflow-y-scroll max-h-[80vh] bg-neutral-600 scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-gray-200">
                 <ul className="grid grid-cols-1 lg:grid-cols-1 gap-6 justify-items-center align-items-start">
-                  {notes.map((note) => (
+                  {filteredNotes.map((note) => (
                     <Note key={note.id} note={note} deleteNote={deleteNote} />
                   ))}
                 </ul>
