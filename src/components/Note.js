@@ -11,7 +11,6 @@ const Note = ({ note, deleteNote }) => {
     <li className="w-full bg-neutral-600 text-white shadow-lg border-neutral-500 border-2 rounded-lg p-4 sm:p-6 lg:p-28 font-arimo">
       <div className="flex flex-col justify-between h-full">
         <div className="flex items-center space-x-3">
-          {/* Category Color Circle */}
           {note.category && note.category.color && (
             <div
               style={{ backgroundColor: note.category.color }}

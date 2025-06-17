@@ -14,9 +14,7 @@ export default function Categories() {
     color: "#ffffff",
   });
 
-  // Track which category is being edited (by id)
   const [editingId, setEditingId] = useState(null);
-  // Store edited category data here
   const [editCategoryData, setEditCategoryData] = useState({
     name: "",
     description: "",
@@ -68,7 +66,6 @@ export default function Categories() {
     }
   };
 
-  // Start editing a category
   const startEditing = (category) => {
     setEditingId(category.id);
     setEditCategoryData({
@@ -78,13 +75,11 @@ export default function Categories() {
     });
   };
 
-  // Cancel editing
   const cancelEditing = () => {
     setEditingId(null);
     setEditCategoryData({ name: "", description: "", color: "#ffffff" });
   };
 
-  // Handle input changes in edit form
   const handleEditChange = (e) => {
     setEditCategoryData({
       ...editCategoryData,
@@ -92,7 +87,6 @@ export default function Categories() {
     });
   };
 
-  // Submit updated category
   const handleUpdateCategory = async (id) => {
     setLoading(true);
     setMessage({ text: "", type: "" });
@@ -112,7 +106,6 @@ export default function Categories() {
     }
   };
 
-  // Delete category
   const handleDeleteCategory = async (id) => {
     if (!window.confirm("Are you sure you want to delete this category?"))
       return;
@@ -135,148 +128,150 @@ export default function Categories() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto font-arimo">
-      <h1 className="text-3xl mb-6 font-bold">Categories</h1>
+    <div className="bg-neutral-600 min-h-screen font-arimo text-white">
+      <div className="p-6 max-w-3xl mx-auto">
+        <h1 className="text-3xl mb-6 font-bold text-center">Categories</h1>
 
-      {message.text && (
-        <SuccessMessage
-          message={message.text}
-          type={message.type}
-          onClose={() => setMessage({ text: "", type: "" })}
-        />
-      )}
-
-      {loading && <Loading />}
-
-      {/* Add new category form */}
-      <form
-        onSubmit={handleAddCategory}
-        className="mb-6 p-4 border rounded bg-white shadow"
-      >
-        <h2 className="text-xl mb-4">Add New Category</h2>
-
-        <input
-          className="form-input mb-3 p-2 border rounded w-full"
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={newCategory.name}
-          onChange={handleNewCategoryChange}
-          required
-        />
-
-        <textarea
-          className="form-input mb-3 p-2 border rounded w-full"
-          name="description"
-          placeholder="Description (optional)"
-          value={newCategory.description}
-          onChange={handleNewCategoryChange}
-        />
-
-        <label className="block mb-3">
-          Color:
-          <input
-            type="color"
-            name="color"
-            value={newCategory.color}
-            onChange={handleNewCategoryChange}
-            className="ml-2"
+        {message.text && (
+          <SuccessMessage
+            message={message.text}
+            type={message.type}
+            onClose={() => setMessage({ text: "", type: "" })}
           />
-        </label>
+        )}
 
-        <button
-          type="submit"
-          className="bg-neutral-600 text-white py-2 px-4 rounded hover:bg-neutral-700"
-          disabled={loading}
+        {loading && <Loading />}
+
+        <form
+          onSubmit={handleAddCategory}
+          className="mb-6 p-4 border border-neutral-500 rounded bg-neutral-700 shadow"
         >
-          Add Category
-        </button>
-      </form>
+          <h2 className="text-xl mb-4 text-white font-semibold">
+            Add New Category
+          </h2>
 
-      {/* List categories */}
-      <div className="space-y-4">
-        {categories.length === 0 && <p>No categories found.</p>}
-        {categories.map((cat) =>
-          editingId === cat.id ? (
-            <div
-              key={cat.id}
-              className="p-4 border rounded shadow flex flex-col bg-gray-100"
-            >
-              <input
-                type="text"
-                name="name"
-                value={editCategoryData.name}
-                onChange={handleEditChange}
-                className="form-input mb-2 p-2 border rounded"
-              />
-              <textarea
-                name="description"
-                value={editCategoryData.description}
-                onChange={handleEditChange}
-                className="form-input mb-2 p-2 border rounded"
-              />
-              <label className="mb-2">
-                Color:
+          <input
+            className="mb-3 p-2 border border-neutral-500 rounded w-full bg-neutral-800 text-white focus:outline-none"
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={newCategory.name}
+            onChange={handleNewCategoryChange}
+            required
+          />
+
+          <textarea
+            className="mb-3 p-2 border border-neutral-500 rounded w-full bg-neutral-800 text-white focus:outline-none"
+            name="description"
+            placeholder="Description (optional)"
+            value={newCategory.description}
+            onChange={handleNewCategoryChange}
+          />
+
+          <label className="block mb-3 text-white font-medium">
+            Color:
+            <input
+              type="color"
+              name="color"
+              value={newCategory.color}
+              onChange={handleNewCategoryChange}
+              className="ml-2"
+            />
+          </label>
+
+          <button
+            type="submit"
+            className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600"
+            disabled={loading}
+          >
+            Add Category
+          </button>
+        </form>
+
+        <div className="space-y-4">
+          {categories.length === 0 && <p>No categories found.</p>}
+          {categories.map((cat) =>
+            editingId === cat.id ? (
+              <div
+                key={cat.id}
+                className="p-4 border border-neutral-500 rounded shadow bg-neutral-700 flex flex-col"
+              >
                 <input
-                  type="color"
-                  name="color"
-                  value={editCategoryData.color}
+                  type="text"
+                  name="name"
+                  value={editCategoryData.name}
                   onChange={handleEditChange}
-                  className="ml-2"
+                  className="mb-2 p-2 border border-neutral-500 rounded bg-neutral-800 text-white"
                 />
-              </label>
-              <div>
-                <button
-                  onClick={() => handleUpdateCategory(cat.id)}
-                  disabled={loading}
-                  className="bg-green-600 text-white py-1 px-4 rounded mr-2 hover:bg-green-700"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={cancelEditing}
-                  disabled={loading}
-                  className="bg-gray-400 text-white py-1 px-4 rounded hover:bg-gray-500"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div
-              key={cat.id}
-              className="p-4 border rounded shadow flex items-center justify-between"
-            >
-              <div className="flex items-center">
-                <div
-                  className="w-8 h-8 rounded mr-4"
-                  style={{ backgroundColor: cat.color }}
-                  title={cat.name}
-                ></div>
-                <div>
-                  <h3 className="font-semibold">{cat.name}</h3>
-                  {cat.description && (
-                    <p className="text-sm">{cat.description}</p>
-                  )}
+                <textarea
+                  name="description"
+                  value={editCategoryData.description}
+                  onChange={handleEditChange}
+                  className="mb-2 p-2 border border-neutral-500 rounded bg-neutral-800 text-white"
+                />
+                <label className="mb-2 text-white font-medium">
+                  Color:
+                  <input
+                    type="color"
+                    name="color"
+                    value={editCategoryData.color}
+                    onChange={handleEditChange}
+                    className="ml-2"
+                  />
+                </label>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 space-y-2 sm:space-y-0 mt-2">
+                  <button
+                    onClick={() => handleUpdateCategory(cat.id)}
+                    disabled={loading}
+                    className="bg-green-600 text-white py-1 px-4 rounded hover:bg-green-700"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={cancelEditing}
+                    disabled={loading}
+                    className="bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600"
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
-              <div className="space-x-2">
-                <button
-                  onClick={() => startEditing(cat)}
-                  className="bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDeleteCategory(cat.id)}
-                  className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700"
-                >
-                  Delete
-                </button>
+            ) : (
+              <div
+                key={cat.id}
+                className="p-4 border border-neutral-500 rounded shadow bg-neutral-700 flex flex-col sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div className="flex items-center mb-2 sm:mb-0">
+                  <div
+                    className="w-8 h-8 rounded mr-4"
+                    style={{ backgroundColor: cat.color }}
+                    title={cat.name}
+                  ></div>
+                  <div>
+                    <h3 className="font-semibold text-white">{cat.name}</h3>
+                    {cat.description && (
+                      <p className="text-sm text-white">{cat.description}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
+                  <button
+                    onClick={() => startEditing(cat)}
+                    className="bg-orange-500 hover:bg-orange-600 text-white py-1 px-3 rounded"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDeleteCategory(cat.id)}
+                    className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          )
-        )}
+            )
+          )}
+        </div>
       </div>
     </div>
   );
