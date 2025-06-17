@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 
@@ -6,26 +6,65 @@ const EditNote = ({ note, onSave }) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState(note.title);
   const [body, setBody] = useState(note.body);
+  const [categoryId, setCategoryId] = useState(
+    note.category ? note.category.id : null
+  );
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get("/api/categories/");
+        setCategories(response.data.results);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+        setMessage({ text: "Failed to load categories", type: "error" });
+      }
+    };
+    fetchCategories();
+  }, []);
+
   const handleSave = async () => {
-    setLoading(true);
     setMessage(null);
 
+    if (!title.trim() || !body.trim()) {
+      setMessage({ text: "Title and content cannot be empty.", type: "error" });
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      const response = await api.put(`/api/notes/update/${note.id}/`, {
-        title,
-        body,
+      const payload = {
+        title: title.trim(),
+        body: body.trim(),
+        category_id: categoryId,
+      };
+
+      console.log("Updating note with data:", payload);
+
+      const response = await api.put(`/api/notes/update/${note.id}/`, payload, {
+        headers: { "Content-Type": "application/json" },
       });
+
       onSave(response.data);
       setMessage({ text: "Note updated successfully!", type: "success" });
     } catch (error) {
-      console.error(`Error updating note with ID ${note.id}:`, error);
-      setMessage({
-        text: "Failed to update note. Please try again.",
-        type: "error",
-      });
+      if (error.response) {
+        console.error("Backend error response data:", error.response.data);
+        setMessage({
+          text: JSON.stringify(error.response.data),
+          type: "error",
+        });
+      } else {
+        console.error(`Error updating note with ID ${note.id}:`, error);
+        setMessage({
+          text: "Failed to update note. Please check your inputs and try again.",
+          type: "error",
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -51,7 +90,7 @@ const EditNote = ({ note, onSave }) => {
           <div
             className={`mb-4 ${
               message.type === "success" ? "text-green-600" : "text-red-600"
-            }`}
+            } whitespace-pre-wrap`}
           >
             {message.text}
           </div>
@@ -73,6 +112,30 @@ const EditNote = ({ note, onSave }) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
+        <div className="mb-4">
+          <label
+            htmlFor="category"
+            className="block text-white text-sm font-bold mb-2"
+          >
+            Category:
+          </label>
+          <select
+            id="category"
+            name="category"
+            value={categoryId || ""}
+            onChange={(e) =>
+              setCategoryId(e.target.value ? Number(e.target.value) : null)
+            }
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="">None</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="mb-6">
           <label
             htmlFor="content"
@@ -87,7 +150,7 @@ const EditNote = ({ note, onSave }) => {
             value={body}
             onChange={(e) => setBody(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none"
-          ></textarea>
+          />
         </div>
         <div className="flex items-center justify-between">
           <button
