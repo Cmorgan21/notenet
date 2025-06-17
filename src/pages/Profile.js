@@ -3,6 +3,7 @@ import api from "../api";
 import Loading from "../components/Loading";
 import EditUsernameModal from "../components/EditUsernameModal";
 import EditPasswordModal from "../components/EditPasswordModal";
+import SuccessMessage from "../components/SuccessMessage"; // import notification component
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -13,6 +14,9 @@ const Profile = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [imageSelected, setImageSelected] = useState(false);
 
+  // New message state for notifications
+  const [message, setMessage] = useState({ text: "", type: "" });
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -20,16 +24,24 @@ const Profile = () => {
         setProfile(response.data);
         setLoading(false);
       } catch (error) {
-        console.error(
-          "Error fetching profile:",
-          error.response ? error.response.data : error.message
-        );
+        setMessage({
+          text: error.response?.data?.detail || "Failed to load profile",
+          type: "error",
+        });
         setLoading(false);
       }
     };
 
     fetchProfile();
   }, []);
+
+  // Helper to clear message after 3 seconds
+  useEffect(() => {
+    if (message.text) {
+      const timer = setTimeout(() => setMessage({ text: "", type: "" }), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -41,31 +53,44 @@ const Profile = () => {
     try {
       const response = await api.patch(`/api/profile/`, { name: username });
       setProfile(response.data);
-      console.log("Username updated:", response.data);
+      setMessage({ text: "Username updated successfully!", type: "success" });
+      setShowUsernameModal(false);
     } catch (error) {
-      console.error(
-        "Error updating username:",
-        error.response ? error.response.data : error.message
-      );
+      setMessage({
+        text:
+          error.response?.data?.name?.[0] ||
+          error.response?.data?.detail ||
+          "Failed to update username",
+        type: "error",
+      });
     }
   };
 
   const handlePasswordSave = async (password) => {
     try {
-      const response = await api.patch(`/api/profile/change-password/`, {
+      await api.patch(`/api/profile/change-password/`, {
         password: password,
       });
-      console.log("Password updated successfully", response.data);
+      setMessage({ text: "Password updated successfully!", type: "success" });
+      setShowPasswordModal(false);
     } catch (error) {
-      console.error(
-        "Error updating password:",
-        error.response ? error.response.data : error.message
-      );
+      setMessage({
+        text:
+          error.response?.data?.password?.[0] ||
+          error.response?.data?.detail ||
+          "Failed to update password",
+        type: "error",
+      });
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!selectedImage) {
+      setMessage({ text: "No image selected.", type: "error" });
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", selectedImage);
 
@@ -77,12 +102,16 @@ const Profile = () => {
       });
       setProfile(response.data);
       setImageSelected(false);
-      console.log("Image updated:", response.data);
+      setSelectedImage(null);
+      setMessage({ text: "Image updated successfully!", type: "success" });
     } catch (error) {
-      console.error(
-        "Error uploading image:",
-        error.response ? error.response.data : error.message
-      );
+      setMessage({
+        text:
+          error.response?.data?.image?.[0] ||
+          error.response?.data?.detail ||
+          "Failed to upload image",
+        type: "error",
+      });
     }
   };
 
@@ -90,7 +119,6 @@ const Profile = () => {
     return <Loading />;
   }
 
-  // Ensure we handle missing data for the profile
   const profileName = profile?.name || "No name available";
   const profileEmail = profile?.email || "No email available";
   const profileCreatedAt = profile?.created_at
@@ -99,6 +127,15 @@ const Profile = () => {
 
   return (
     <div className="text-center flex flex-col items-center bg-neutral-600 text-white min-h-screen pt-4 relative md:justify-center">
+      {/* Show notification message */}
+      {message.text && (
+        <SuccessMessage
+          message={message.text}
+          type={message.type}
+          onClose={() => setMessage({ text: "", type: "" })}
+        />
+      )}
+
       <div className="absolute top-4 right-4">
         <button
           onClick={() => setShowOptions(!showOptions)}
