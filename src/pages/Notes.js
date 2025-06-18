@@ -167,7 +167,74 @@ const Notes = () => {
               <form
                 className="max-w-md w-full bg-neutral-600 shadow-md rounded px-8 pt-6 pb-8 mb-4 relative z-20"
                 onSubmit={createNote}
-              ></form>
+              >
+                {/* Title */}
+                <div className="mb-4">
+                  <label
+                    htmlFor="title"
+                    className="block text-white text-sm font-bold mb-2"
+                  >
+                    Title:
+                  </label>
+                  <input
+                    type="text"
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    required
+                  />
+                </div>
+
+                {/* Body */}
+                <div className="mb-4">
+                  <label
+                    htmlFor="body"
+                    className="block text-white text-sm font-bold mb-2"
+                  >
+                    Body:
+                  </label>
+                  <textarea
+                    id="body"
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none"
+                    required
+                  />
+                </div>
+
+                {/* Category */}
+                <div className="mb-4">
+                  <label
+                    htmlFor="category"
+                    className="block text-white text-sm font-bold mb-2"
+                  >
+                    Category:
+                  </label>
+                  <select
+                    id="category"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  >
+                    <option value="">Select Category</option>
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <button
+                    type="submit"
+                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Save Note
+                  </button>
+                </div>
+              </form>
             </div>
           )}
         </div>

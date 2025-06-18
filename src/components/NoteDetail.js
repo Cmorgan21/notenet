@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../api";
 import Loading from "./Loading";
 import EditNote from "./EditNote";
-import SuccessMessage from "../components/SuccessMessage"; // <- Reuse your existing component
+import SuccessMessage from "../components/SuccessMessage";
 
 const NoteDetail = () => {
   const { id } = useParams();
