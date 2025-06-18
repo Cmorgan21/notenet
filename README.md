@@ -53,29 +53,6 @@ Live Website: [Notenet](https://notenet-7107311aceb5.herokuapp.com)
 - Media storage with Cloudinary
 - Modular app design: `notes`, `categories`, `profiles`
 
-## API Overview
-
-All endpoints are protected using JWT Authentication unless otherwise noted.
-
-| Method | Endpoint                        | Description                               | Access        |
-| ------ | ------------------------------- | ----------------------------------------- | ------------- |
-| POST   | `/api/users/`                   | Register a new user                       | Public        |
-| POST   | `/api/token/`                   | Obtain JWT access and refresh tokens      | Public        |
-| POST   | `/api/token/refresh/`           | Refresh JWT token                         | Public        |
-| GET    | `/api/notes/`                   | List all notes for the authenticated user | Authenticated |
-| POST   | `/api/notes/create/`            | Create a new note                         | Authenticated |
-| GET    | `/api/notes/<id>/`              | Retrieve a specific note                  | Authenticated |
-| PUT    | `/api/notes/<id>/update/`       | Update a specific note                    | Authenticated |
-| DELETE | `/api/notes/<id>/delete/`       | Delete a specific note                    | Authenticated |
-| GET    | `/api/categories/`              | List all categories for the user          | Authenticated |
-| POST   | `/api/categories/`              | Create a new category                     | Authenticated |
-| GET    | `/api/categories/<id>/`         | Retrieve a category                       | Authenticated |
-| PUT    | `/api/categories/<id>/`         | Update a category                         | Authenticated |
-| DELETE | `/api/categories/<id>/`         | Delete a category                         | Authenticated |
-| GET    | `/api/profile/`                 | Retrieve current user's profile           | Authenticated |
-| PATCH  | `/api/profile/upload/<id>/`     | Update profile image                      | Authenticated |
-| PUT    | `/api/profile/change-password/` | Change password                           | Authenticated |
-
 ## UX
 
 ## The Strategy Plane
@@ -329,23 +306,6 @@ This section demonstrates the mobile responsiveness of the website, showcasing h
 
 ![Sign up Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222648_vcwrma.png)
 
-## Real-time Features
-
-1. **Real-time User Interactions**
-
-   - Enjoy real-time chat, notifications, and user-to-user messaging for seamless communication.
-
-2. **Personalized User Profiles**
-
-   - Customize your profile further, adding new sections and options to make it uniquely yours.
-
-3. **Mobile App Development**
-
-   - Stay tuned for the mobile app, extending accessibility to your favorite social platform.
-
-4. **Adding real-time reminders**
-   - Allowing notifications or emails to update the user when a specified date has been made for the notes to remind them
-
 # Notenet
 
 ![Responsive Mockup](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952316/Screenshot_2024-07-02_213139_zxqenc.png)
@@ -383,6 +343,234 @@ Live Website: [Notenet](https://notenet-7107311aceb5.herokuapp.com)
 - [API Overview](#api-overview)
 - [Real-time Features](#real-time-features)
 - [Frontend Component Documentation](#frontend-component-documentation)
+
+## API Overview
+
+All endpoints are protected using JWT Authentication unless otherwise noted. Below is a list of the main API endpoints and their descriptions:
+
+| Method | Endpoint                        | Description                               | Access        |
+| ------ | ------------------------------- | ----------------------------------------- | ------------- |
+| POST   | `/api/users/`                   | Register a new user                       | Public        |
+| POST   | `/api/token/`                   | Obtain JWT access and refresh tokens      | Public        |
+| POST   | `/api/token/refresh/`           | Refresh JWT token                         | Public        |
+| GET    | `/api/notes/`                   | List all notes for the authenticated user | Authenticated |
+| POST   | `/api/notes/create/`            | Create a new note                         | Authenticated |
+| GET    | `/api/notes/<id>/`              | Retrieve a specific note                  | Authenticated |
+| PUT    | `/api/notes/<id>/update/`       | Update a specific note                    | Authenticated |
+| DELETE | `/api/notes/<id>/delete/`       | Delete a specific note                    | Authenticated |
+| GET    | `/api/categories/`              | List all categories for the user          | Authenticated |
+| POST   | `/api/categories/`              | Create a new category                     | Authenticated |
+| GET    | `/api/categories/<id>/`         | Retrieve a category                       | Authenticated |
+| PUT    | `/api/categories/<id>/`         | Update a category                         | Authenticated |
+| DELETE | `/api/categories/<id>/`         | Delete a category                         | Authenticated |
+| GET    | `/api/profile/`                 | Retrieve current user's profile           | Authenticated |
+| PATCH  | `/api/profile/upload/<id>/`     | Update profile image                      | Authenticated |
+| PUT    | `/api/profile/change-password/` | Change password                           | Authenticated |
+
+### Endpoint Details
+
+1. **POST `/api/users/`** - Register a new user.
+
+   - **Description:** Creates a new user in the system by providing a username, email, and password.
+   - **Request Body:**
+     ```json
+     {
+       "username": "john_doe",
+       "email": "john@example.com",
+       "password": "securePassword123"
+     }
+     ```
+   - **Response:** Returns a message confirming the successful registration of the user.
+
+2. **POST `/api/token/`** - Obtain JWT access and refresh tokens.
+
+   - **Description:** Authenticates the user by verifying their username and password, and returns a JWT access token and refresh token for subsequent requests.
+   - **Request Body:**
+     ```json
+     {
+       "username": "john_doe",
+       "password": "securePassword123"
+     }
+     ```
+   - **Response:**
+     ```json
+     {
+       "access": "access_token_string",
+       "refresh": "refresh_token_string"
+     }
+     ```
+
+3. **POST `/api/token/refresh/`** - Refresh JWT token.
+
+   - **Description:** Refreshes the JWT access token using the refresh token.
+   - **Request Body:**
+     ```json
+     {
+       "refresh": "refresh_token_string"
+     }
+     ```
+   - **Response:** Returns a new JWT access token.
+
+4. **GET `/api/notes/`** - List all notes for the authenticated user.
+
+   - **Description:** Retrieves a list of notes created by the authenticated user.
+   - **Response:**
+     ```json
+     [
+       {
+         "id": 1,
+         "title": "Note 1",
+         "body": "This is note 1",
+         "category": "Work",
+         "created_on": "2024-06-15T14:25:00Z",
+         "updated_at": "2024-06-16T12:30:00Z"
+       },
+       ...
+     ]
+     ```
+
+5. **POST `/api/notes/create/`** - Create a new note.
+
+   - **Description:** Allows authenticated users to create a new note with a title, body, and optional category.
+   - **Request Body:**
+     ```json
+     {
+       "title": "New Note",
+       "body": "This is the content of the note.",
+       "category_id": 1
+     }
+     ```
+   - **Response:** Returns the created note.
+
+6. **GET `/api/notes/<id>/`** - Retrieve a specific note.
+
+   - **Description:** Retrieves the details of a specific note by its `id`.
+   - **Response:**
+     ```json
+     {
+       "id": 1,
+       "title": "New Note",
+       "body": "This is the content of the note.",
+       "category": "Work",
+       "created_on": "2024-06-15T14:25:00Z",
+       "updated_at": "2024-06-16T12:30:00Z"
+     }
+     ```
+
+7. **PUT `/api/notes/<id>/update/`** - Update a specific note.
+
+   - **Description:** Allows authenticated users to update the content or category of a note by its `id`.
+   - **Request Body:**
+     ```json
+     {
+       "title": "Updated Note",
+       "body": "Updated content",
+       "category_id": 2
+     }
+     ```
+   - **Response:** Returns the updated note.
+
+8. **DELETE `/api/notes/<id>/delete/`** - Delete a specific note.
+
+   - **Description:** Deletes a specific note by its `id`.
+   - **Response:** Returns a success message upon deletion.
+
+9. **GET `/api/categories/`** - List all categories for the user.
+
+   - **Description:** Retrieves all categories available to the authenticated user.
+   - **Response:**
+     ```json
+     [
+       {
+         "id": 1,
+         "name": "Work",
+         "description": "Work-related tasks",
+         "color": "#FF6347"
+       },
+       ...
+     ]
+     ```
+
+10. **POST `/api/categories/`** - Create a new category.
+
+    - **Description:** Creates a new category for notes, allowing users to organize them.
+    - **Request Body:**
+      ```json
+      {
+        "name": "Personal",
+        "description": "Personal notes",
+        "color": "#32CD32"
+      }
+      ```
+    - **Response:** Returns the created category.
+
+11. **GET `/api/categories/<id>/`** - Retrieve a category.
+
+    - **Description:** Retrieves the details of a specific category by its `id`.
+    - **Response:**
+      ```json
+      {
+        "id": 1,
+        "name": "Work",
+        "description": "Work-related tasks",
+        "color": "#FF6347"
+      }
+      ```
+
+12. **PUT `/api/categories/<id>/`** - Update a category.
+
+    - **Description:** Updates the name, description, or color of an existing category.
+    - **Request Body:**
+      ```json
+      {
+        "name": "Updated Category",
+        "description": "Updated description",
+        "color": "#4682B4"
+      }
+      ```
+    - **Response:** Returns the updated category.
+
+13. **DELETE `/api/categories/<id>/`** - Delete a category.
+
+    - **Description:** Deletes a specific category by its `id`.
+    - **Response:** Returns a success message upon deletion.
+
+14. **GET `/api/profile/`** - Retrieve the current user's profile.
+
+    - **Description:** Retrieves the profile information of the authenticated user.
+    - **Response:**
+      ```json
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "created_at": "2024-06-15T14:25:00Z"
+      }
+      ```
+
+15. **PATCH `/api/profile/upload/<id>/`** - Update profile image.
+
+    - **Description:** Allows the user to upload a new profile image.
+    - **Request Body:** Form-data containing the image file.
+
+16. **PUT `/api/profile/change-password/`** - Change user password.
+    - **Description:** Allows the user to change their password.
+    - **Request Body:**
+      ```json
+      {
+        "password": "newPassword123"
+      }
+      ```
+    - **Response:** Returns a success message upon password change.
+
+---
+
+### Notes:
+
+- All endpoints requiring authentication should include a valid JWT token in the `Authorization` header as `Bearer <your-token-here>`.
+- Error responses are typically returned with an appropriate HTTP status code (e.g., 400 for bad requests, 404 for not found).
+
+This section explains the API endpoints in detail, including request/response formats, expected behavior, and required authentication.
 
 ## Frontend Component Documentation
 
@@ -508,6 +696,23 @@ The `Signup` page allows new users to create an account by providing their usern
 The components listed above form the core of the **Notenet** application. Each component is designed to be modular, reusable, and easy to maintain. The **Notenet** app provides a clean user interface with interactive features such as note creation, profile management, and user authentication.
 
 For more details on the back-end and API, refer to the **API Overview** section.
+
+## Real-time Features
+
+1. **Real-time User Interactions**
+
+   - Enjoy real-time chat, notifications, and user-to-user messaging for seamless communication.
+
+2. **Personalized User Profiles**
+
+   - Customize your profile further, adding new sections and options to make it uniquely yours.
+
+3. **Mobile App Development**
+
+   - Stay tuned for the mobile app, extending accessibility to your favorite social platform.
+
+4. **Adding real-time reminders**
+   - Allowing notifications or emails to update the user when a specified date has been made for the notes to remind them
 
 ## Testing
 
