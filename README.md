@@ -160,7 +160,7 @@ Logged-in users can create notes and add to their profile and logged out users c
 
 ### Database Structure
 
-### Models Overview
+#### Models Overview
 
 #### User
 
@@ -331,6 +331,25 @@ This section demonstrates the mobile responsiveness of the website, showcasing h
 #### Sign Up
 
 ![Sign up Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222648_vcwrma.png)
+
+### API Endpoints Summary
+
+| Endpoint                    | Method | Description                  | Auth Required |
+| --------------------------- | ------ | ---------------------------- | ------------- |
+| `/api/token/`               | POST   | Obtain JWT access/refresh    | No            |
+| `/api/token/refresh/`       | POST   | Refresh access token         | No            |
+| `/notes/`                   | GET    | List notes for user          | Yes           |
+| `/notes/`                   | POST   | Create note                  | Yes           |
+| `/notes/<id>/`              | GET    | Retrieve single note         | Yes           |
+| `/notes/<id>/`              | PUT    | Update note                  | Yes           |
+| `/notes/<id>/`              | DELETE | Delete note                  | Yes           |
+| `/categories/`              | GET    | List categories              | Yes           |
+| `/categories/`              | POST   | Create category              | Yes           |
+| `/categories/<id>/`         | PUT    | Update category              | Yes           |
+| `/categories/<id>/`         | DELETE | Delete category              | Yes           |
+| `/profile/`                 | GET    | Get profile                  | Yes           |
+| `/profile/`                 | PATCH  | Update profile name or image | Yes           |
+| `/profile/change-password/` | PATCH  | Change user password         | Yes           |
 
 ### Future Features
 
