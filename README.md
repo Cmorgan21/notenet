@@ -32,6 +32,47 @@ Live Website: [Notenet](https://notenet-7107311aceb5.herokuapp.com)
 - [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
 
+## Full Stack Architecture Overview
+
+**Frontend:**
+
+- React with Tailwind and Bootstrap
+- Axios for API requests
+- JWT-based token authentication
+- Protected routes via route guards
+- Component-based architecture
+
+**Backend:**
+
+- Django REST Framework
+- Token-based authentication using JWT (SimpleJWT)
+- PostgreSQL via ElephantSQL
+- Media storage with Cloudinary
+- Modular app design: `notes`, `categories`, `profiles`
+
+## API Overview
+
+All endpoints are protected using JWT Authentication unless otherwise noted.
+
+| Method | Endpoint                        | Description                               | Access        |
+| ------ | ------------------------------- | ----------------------------------------- | ------------- |
+| POST   | `/api/users/`                   | Register a new user                       | Public        |
+| POST   | `/api/token/`                   | Obtain JWT access and refresh tokens      | Public        |
+| POST   | `/api/token/refresh/`           | Refresh JWT token                         | Public        |
+| GET    | `/api/notes/`                   | List all notes for the authenticated user | Authenticated |
+| POST   | `/api/notes/create/`            | Create a new note                         | Authenticated |
+| GET    | `/api/notes/<id>/`              | Retrieve a specific note                  | Authenticated |
+| PUT    | `/api/notes/<id>/update/`       | Update a specific note                    | Authenticated |
+| DELETE | `/api/notes/<id>/delete/`       | Delete a specific note                    | Authenticated |
+| GET    | `/api/categories/`              | List all categories for the user          | Authenticated |
+| POST   | `/api/categories/`              | Create a new category                     | Authenticated |
+| GET    | `/api/categories/<id>/`         | Retrieve a category                       | Authenticated |
+| PUT    | `/api/categories/<id>/`         | Update a category                         | Authenticated |
+| DELETE | `/api/categories/<id>/`         | Delete a category                         | Authenticated |
+| GET    | `/api/profile/`                 | Retrieve current user's profile           | Authenticated |
+| PATCH  | `/api/profile/upload/<id>/`     | Update profile image                      | Authenticated |
+| PUT    | `/api/profile/change-password/` | Change password                           | Authenticated |
+
 ## UX
 
 ## The Strategy Plane
