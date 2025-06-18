@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 
-const EditNote = ({ note, onSave }) => {
+const EditNote = ({ note, onSave, setParentMessage }) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState(note.title);
   const [body, setBody] = useState(note.body);
@@ -11,7 +11,6 @@ const EditNote = ({ note, onSave }) => {
   );
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -20,17 +19,18 @@ const EditNote = ({ note, onSave }) => {
         setCategories(response.data.results);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
-        setMessage({ text: "Failed to load categories", type: "error" });
+        setParentMessage({ text: "Failed to load categories", type: "error" });
       }
     };
     fetchCategories();
-  }, []);
+  }, [setParentMessage]);
 
   const handleSave = async () => {
-    setMessage(null);
-
     if (!title.trim() || !body.trim()) {
-      setMessage({ text: "Title and content cannot be empty.", type: "error" });
+      setParentMessage({
+        text: "Title and content cannot be empty.",
+        type: "error",
+      });
       return;
     }
 
@@ -49,18 +49,21 @@ const EditNote = ({ note, onSave }) => {
         headers: { "Content-Type": "application/json" },
       });
 
+      // Trigger the parent save function (also closes modal)
       onSave(response.data);
-      setMessage({ text: "Note updated successfully!", type: "success" });
     } catch (error) {
       if (error.response) {
         console.error("Backend error response data:", error.response.data);
-        setMessage({
-          text: JSON.stringify(error.response.data),
+        setParentMessage({
+          text:
+            typeof error.response.data === "string"
+              ? error.response.data
+              : JSON.stringify(error.response.data),
           type: "error",
         });
       } else {
         console.error(`Error updating note with ID ${note.id}:`, error);
-        setMessage({
+        setParentMessage({
           text: "Failed to update note. Please check your inputs and try again.",
           type: "error",
         });
@@ -86,15 +89,7 @@ const EditNote = ({ note, onSave }) => {
           </button>
           <h2 className="text-3xl font-bold mb-4 text-center">Edit Note</h2>
         </div>
-        {message && (
-          <div
-            className={`mb-4 ${
-              message.type === "success" ? "text-green-600" : "text-red-600"
-            } whitespace-pre-wrap`}
-          >
-            {message.text}
-          </div>
-        )}
+
         <div className="mb-4">
           <label
             htmlFor="title"
@@ -112,6 +107,7 @@ const EditNote = ({ note, onSave }) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
+
         <div className="mb-4">
           <label
             htmlFor="category"
@@ -136,6 +132,7 @@ const EditNote = ({ note, onSave }) => {
             ))}
           </select>
         </div>
+
         <div className="mb-6">
           <label
             htmlFor="content"
@@ -152,6 +149,7 @@ const EditNote = ({ note, onSave }) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none"
           />
         </div>
+
         <div className="flex items-center justify-between">
           <button
             type="button"
