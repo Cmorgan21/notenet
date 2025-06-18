@@ -222,11 +222,13 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 
 #### Authenticated
 
-![Notenet Logged in](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872169/Screenshot_2024-07-01_223546_hem8dz.png)
+![Notenet Logged in](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218965/Screenshot_2025-06-18_043552_kddc0d.png)
 
 - **Notes:** The user can start creating, editing and deleting notes.
 
 - **Profile:** The user view their image, username, and email and also change their username, password and profile picture.
+
+- **Categories:** The use can create a category to store their notes into for easier filtering and searching
 
 - **Authentication:** The authentication icons transform as well. This changes to then display logout and when this is pressed the user is logged out
 
@@ -275,6 +277,36 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 ![View Note](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873077/Screenshot_2024-07-01_233021_dgouuc.png)
 
 ![View Note Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873078/Screenshot_2024-07-01_233037_hec7vt.png)
+
+### Categories
+
+- **Categories Overview**  
+  The categories feature allows users to create and manage custom tags for their notes. This enhances organization and filtering, letting users group similar notes together for easier access.
+
+![Categories Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218965/Screenshot_2025-06-18_043558_amg2gs.png)
+
+- **Add Category**  
+  Users can create a new category by entering a name, selecting a color, and providing an optional description. A form is toggled by clicking the "Add" icon.
+
+![Add Category Form](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218965/Screenshot_2025-06-18_043627_mzbi9j.png)
+
+- **Edit Category**  
+  Categories can be edited to change the name, description, or color. Clicking the edit icon opens a form with pre-filled values for easy updates.
+
+![Edit Category Icon](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218966/Screenshot_2025-06-18_043647_aeywuv.png)
+
+- **Delete Category**  
+  Each category has a delete icon, which prompts a confirmation before removal. This ensures users don't accidentally delete important groupings.
+
+![Delete Category Icon](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218965/Screenshot_2025-06-18_043605_sc5rtv.png)
+
+- **Display Categories**  
+  Created categories are displayed in a card-like structure, showing the category name, color tag, and description. This layout allows users to visually distinguish between different categories.
+
+- **Filter Notes by Category**  
+  On the notes page, users can filter their notes by selecting a category from a dropdown or list, allowing quick access to relevant notes.
+
+![Filter by Category](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750219329/Screenshot_2025-06-18_050133_hnkhzh.png)
 
 ### Profile
 
