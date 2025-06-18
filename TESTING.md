@@ -12,6 +12,7 @@
    - [Unit Testing](#unit-testing)
    - [Pylint](#pylint)
    - [Bugs](#bugs)
+3. [Manual Testing](#manual-testing)
 
 ---
 
