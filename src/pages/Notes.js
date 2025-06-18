@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import api from "../api";
 import Note from "../components/Note";
 import logo from "../assets/notenetlogo.png";
@@ -94,12 +94,14 @@ const Notes = () => {
     }
   };
 
-  const filteredNotes =
-    filterCategory === "all"
-      ? notes
-      : notes.filter((note) => {
-          return note.category && note.category.id === parseInt(filterCategory);
-        });
+  // ✅ useMemo to optimize filtering
+  const filteredNotes = useMemo(() => {
+    if (filterCategory === "all") return notes;
+
+    return notes.filter(
+      (note) => note.category && note.category.id === parseInt(filterCategory)
+    );
+  }, [notes, filterCategory]);
 
   return (
     <div className="bg-neutral-600 min-h-screen flex items-center justify-center text-white py-8 md:py-16 font-arimo">
@@ -165,80 +167,7 @@ const Notes = () => {
               <form
                 className="max-w-md w-full bg-neutral-600 shadow-md rounded px-8 pt-6 pb-8 mb-4 relative z-20"
                 onSubmit={createNote}
-              >
-                <div className="mb-4">
-                  <label
-                    htmlFor="title"
-                    className="block text-white text-sm font-bold mb-2"
-                  >
-                    Title:
-                  </label>
-                  <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    required
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label
-                    htmlFor="category"
-                    className="block text-white text-sm font-bold mb-2"
-                  >
-                    Category:
-                  </label>
-                  <select
-                    id="category"
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  >
-                    <option value="">Select a category</option>
-                    {categories.map((cat) => (
-                      <option key={cat.id} value={cat.id}>
-                        {cat.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="mb-6">
-                  <label
-                    htmlFor="content"
-                    className="block text-white text-sm font-bold mb-2"
-                  >
-                    Content:
-                  </label>
-                  <textarea
-                    id="content"
-                    name="content"
-                    required
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none"
-                  ></textarea>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <button
-                    type="submit"
-                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Submit
-                  </button>
-                  <button
-                    type="button"
-                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    onClick={() => setIsFormLoaded(false)}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
+              ></form>
             </div>
           )}
         </div>
