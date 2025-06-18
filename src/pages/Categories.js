@@ -28,25 +28,27 @@ export default function Categories() {
   };
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      setLoading(true);
+      try {
+        const res = await api.get("/api/categories/");
+        const data = Array.isArray(res.data)
+          ? res.data
+          : res.data.results || [];
+        setCategories(data);
+      } catch (error) {
+        showMessage(
+          error.response?.data?.detail || "Failed to fetch categories",
+          "error"
+        );
+        setCategories([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchCategories();
   }, []);
-
-  const fetchCategories = async () => {
-    setLoading(true);
-    try {
-      const res = await api.get("/api/categories/");
-      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
-      setCategories(data);
-    } catch (error) {
-      showMessage(
-        error.response?.data?.detail || "Failed to fetch categories",
-        "error"
-      );
-      setCategories([]);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleNewCategoryChange = (e) => {
     setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
@@ -61,7 +63,10 @@ export default function Categories() {
       await api.post("/api/categories/", newCategory);
       showMessage("Category added!", "success");
       setNewCategory({ name: "", description: "", color: "#ffffff" });
-      fetchCategories();
+      // Fetch updated categories
+      const res = await api.get("/api/categories/");
+      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+      setCategories(data);
     } catch (error) {
       showMessage(
         error.response?.data.detail || "Failed to add category",
@@ -101,7 +106,9 @@ export default function Categories() {
       await api.put(`/api/categories/${id}/`, editCategoryData);
       showMessage("Category updated!", "success");
       setEditingId(null);
-      fetchCategories();
+      const res = await api.get("/api/categories/");
+      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+      setCategories(data);
     } catch (error) {
       showMessage(
         error.response?.data.detail || "Failed to update category",
@@ -122,7 +129,9 @@ export default function Categories() {
     try {
       await api.delete(`/api/categories/${id}/`);
       showMessage("Category deleted!", "success");
-      fetchCategories();
+      const res = await api.get("/api/categories/");
+      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+      setCategories(data);
     } catch (error) {
       showMessage(
         error.response?.data.detail || "Failed to delete category",
