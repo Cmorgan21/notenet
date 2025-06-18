@@ -158,6 +158,35 @@ For logged-out users, the navigation bar provides access to the Home, About, Sig
 The transition to a logged-in state empowers users with the ability to perform actions beyond the scope of logged-out users:
 Logged-in users can create notes and add to their profile and logged out users can't.
 
+### Database Structure
+
+### Models Overview
+
+#### User
+
+- Provided by Django with JWT auth integration
+- One-to-One relationship with Profile
+
+#### Profile
+
+- Linked to User
+- Includes name, email, profile image
+- Auto-created on user registration
+
+#### Note
+
+- Title: CharField
+- Body: TextField
+- Author: ForeignKey to User
+- Category: Optional ForeignKey to Category
+- Auto timestamps: `created_on`, `updated_at`
+
+#### Category
+
+- Name, color, description
+- Owner (user-specific)
+- Used to tag and filter notes
+
 ## Features
 
 ### Web Title and Logo
