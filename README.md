@@ -4,7 +4,7 @@
 
 ## Project Objective
 
-**Notenet** is a online application that allows users to create, update and delete notes. This is to keep everything within your day to day life noted. This means everything you need to keep on top of in your day to day is at the click of a finger
+**Notenet** is an online application that allows users to create, update, and delete notes. This is to keep everything within your day-to-day life noted. This means everything you need to keep on top of in your day-to-day is at the click of a finger.
 
 Live Website: [Notenet](https://notenet-7107311aceb5.herokuapp.com)
 
@@ -31,6 +31,9 @@ Live Website: [Notenet](https://notenet-7107311aceb5.herokuapp.com)
 - [Back-end Deployment](#deployment-backend)
 - [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
+- [Full Stack Architecture Overview](#full-stack-architecture-overview)
+- [API Overview](#api-overview)
+- [Real-time Features](#real-time-features)
 
 ## Full Stack Architecture Overview
 
@@ -79,9 +82,7 @@ All endpoints are protected using JWT Authentication unless otherwise noted.
 
 ### Project Objective
 
-The objective of this project is to create a user friendly platform for any user to be able to create an account and start making notes. This allows users to write amy kind of note and to edit and update them as they need.
-
-### The Strategy Plane
+The objective of this project is to create a user-friendly platform for any user to be able to create an account and start making notes. This allows users to write any kind of note and to edit and update them as they need.
 
 ### Agile Management
 
@@ -95,7 +96,7 @@ This was designated through labels of 'high priority', 'medium priority' and 'lo
 
 You can view the user stories board here: [User Stories Board](https://github.com/users/Cmorgan21/projects/7)
 
-All Project User stories have been referenced using a number within the table to the number within the project board. User stories have been used as a guide line to ensure all content is use friendly and all criteria is met.
+All Project User stories have been referenced using a number within the table to the number within the project board. User stories have been used as a guideline to ensure all content is user-friendly and all criteria are met.
 
 | #   | User Story          | Description                                                                                                                                               |
 | --- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -105,8 +106,8 @@ All Project User stories have been referenced using a number within the table to
 |     |                     | - User is notified of success or errors                                                                                                                   |
 |     |                     | - User is redirected to the sign in page                                                                                                                  |
 | 2   | **Sign in**         | As a user I can sign in to have the ability to check previously created notes and have access to authenticated only features.                             |
-|     |                     | - User is presented with a sign in form to input username and email                                                                                       |
-|     |                     | - User is notified when sign in has been successful or if there has been an error                                                                         |
+|     |                     | - User is presented with a sign-in form to input username and email                                                                                       |
+|     |                     | - User is notified when sign-in has been successful or if there has been an error                                                                         |
 | 3   | **Sign out**        | As an authenticated user I can sign out of my account to restrict anyone else from having access to my account and all information protected.             |
 |     |                     | - Clearly display logout button for user to navigate                                                                                                      |
 |     |                     | - Clear tokens so there is no risk of account being accessed unless the specific user                                                                     |
@@ -145,7 +146,6 @@ All Project User stories have been referenced using a number within the table to
 |     |                     | - The home page includes an introductory section or tutorial on creating the first note                                                                   |
 |     |                     | - Instructions are clear and easy to follow                                                                                                               |
 |     |                     | - Images and videos to adapt to all users                                                                                                                 |
-|     |
 
 ## The Structure Plane
 
@@ -153,10 +153,9 @@ All Project User stories have been referenced using a number within the table to
 
 Notenet exhibits two user experiences contingent upon the user's authentication status. Whether logged in or logged out, these states dictate varying content accessibility and user capabilities.
 
-For logged-out users, the navigation bar provides access to the Home, About, Sign In, and Sign Up pages. Upon logging in, the user gains access to additional features being able to create notes and customize their profile
+For logged-out users, the navigation bar provides access to the Home, About, Sign In, and Sign Up pages. Upon logging in, the user gains access to additional features being able to create notes and customize their profile.
 
-The transition to a logged-in state empowers users with the ability to perform actions beyond the scope of logged-out users:
-Logged-in users can create notes and add to their profile and logged out users can't.
+The transition to a logged-in state empowers users with the ability to perform actions beyond the scope of logged-out users: Logged-in users can create notes and add to their profile, and logged-out users can't.
 
 ### Database Structure
 
@@ -191,7 +190,7 @@ Logged-in users can create notes and add to their profile and logged out users c
 
 ### Web Title and Logo
 
-The Web Url contains a favicon and a specific name called 'notenet'. This is to further customize the website to look more professional and enhance the user experience
+The Web URL contains a favicon and a specific name called 'Notenet'. This is to further customize the website to look more professional and enhance the user experience.
 
 ![Web title and logo](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720041413/Screenshot_2024-07-03_221613_ozhsv1.png)
 
@@ -203,62 +202,60 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 
 #### Not Authenticated
 
-- **Notenet Text** The text provides a clear and concise reminder to the user what the application is called and allows the user to remember for future reference
-- **Home:** Users can navigate to the "Home" section, where a intro to how to get started is displayed upon the user
-- **Notes** When the user is not authenticated the user will be directed to the sign-in page.
-- **Authentication:** the 'sign-in' page is displayed for the user to log in, but also the sign-up page is nested within the sign-in page for users to create an account.
+- **Notenet Text**: The text provides a clear and concise reminder to the user what the application is called and allows the user to remember for future reference
+- **Home**: Users can navigate to the "Home" section, where an intro to how to get started is displayed upon the user
+- **Notes**: When the user is not authenticated, the user will be directed to the sign-in page.
+- **Authentication**: The 'sign-in' page is displayed for the user to log in, but also the sign-up page is nested within the sign-in page for users to create an account.
 
 #### Authenticated
 
 ![Notenet Logged in](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872169/Screenshot_2024-07-01_223546_hem8dz.png)
 
-- **Notes:** The user can start creating, editing and deleting notes.
-
-- **Profile:** The user view their image, username, and email and also change their username, password and profile picture.
-
-- **Authentication:** The authentication icons transform as well. This changes to then display logout and when this is pressed the user is logged out
+- **Notes**: The user can start creating, editing, and deleting notes.
+- **Profile**: The user can view their image, username, and email and also change their username, password, and profile picture.
+- **Authentication**: The authentication icons transform as well. This changes to then display logout, and when this is pressed, the user is logged out.
 
 ### Home Page
 
-- **Greeting Text** One feature within the home page is the greeting text that is a clear and concise. This welcomes the user to the page.
+- **Greeting Text**: One feature within the home page is the greeting text that is clear and concise. This welcomes the user to the page.
 
 ![Home Page text](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872170/Screenshot_2024-07-01_223645_skfmst.png)
 
-- **Instructions** This feature includes images and numbers to give the user instructions on how to get started and images to follow the process for different kinds of users.
+- **Instructions**: This feature includes images and numbers to give the user instructions on how to get started and images to follow the process for different kinds of users.
 
 ![Home Page Instructions](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872170/Screenshot_2024-07-01_223645_skfmst.png)
 
-- **Animated Background** The animated background brings the home page to life and gives it less of a simplistic feel.
+- **Animated Background**: The animated background brings the home page to life and gives it less of a simplistic feel.
 
 ### Notes
 
-- **Notes** On this notes page the main feature is the notes that are displayed when a user creates notes. These will be stored in a list like fashion for users to scroll down and view all their notes.
+- **Notes**: On this notes page, the main feature is the notes that are displayed when a user creates notes. These will be stored in a list-like fashion for users to scroll down and view all their notes.
 
 ![Notes Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872169/Screenshot_2024-07-01_223929_ewmnyr.png)
 
-- **Most Recent at the top** This allows the most recent notes a user has created to be viewed first. This is more convinient for a user as it allows them to view their new created note
+- **Most Recent at the top**: This allows the most recent notes a user has created to be viewed first. This is more convenient for a user as it allows them to view their newly created note.
 
-- **No Notes found** The no notes found indicates to the user that no notes have been created as of yet. Furthermore this also gives a call to action on how to create your first note.
+- **No Notes found**: The no notes found indicates to the user that no notes have been created as of yet. Furthermore, this also gives a call to action on how to create your first note.
 
 ![No notes found](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872170/Screenshot_2024-07-01_223806_rcmkln.png)
 
-- **Create a note** Another feature of the note page is the adding note icon. This will display a form which will allow a user to create one and submit it. This will contain the title and content.
+- **Create a note**: Another feature of the note page is the adding note icon. This will display a form that will allow a user to create one and submit it. This will contain the title and content.
 
 ![Create a note icon](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719600955/Screenshot_2024-06-28_195545_s87yro.png)
 
 ![Create a note form](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872169/Screenshot_2024-07-01_223952_hg8bqq.png)
 
-- **Edit Note** Another feature of the note page is editing icon within the Individual Note viewing page. This is accessed through the icon at the bottom right of the page
+- **Edit Note**: Another feature of the note page is the editing icon within the Individual Note viewing page. This is accessed through the icon at the bottom right of the page.
 
 ![Edit Note Icon](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873391/Screenshot_2024-07-01_233615_dh0rhr.png)
 
 ![Edit Note Form](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873391/Screenshot_2024-07-01_233304_dtqowe.png)
 
-- **Delete Note** A delete button is included on each note to give the user the ability to erase unwanted notes seemlessly and affectively
+- **Delete Note**: A delete button is included on each note to give the user the ability to erase unwanted notes seamlessly and effectively.
 
 ![Delete Note](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873080/Screenshot_2024-07-01_233026_ye8byl.png)
 
-- **View Note** Viewing the note allows you to view the full content of an individual note. This is accessed through another icon
+- **View Note**: Viewing the note allows you to view the full content of an individual note. This is accessed through another icon.
 
 ![View Note](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873077/Screenshot_2024-07-01_233021_dgouuc.png)
 
@@ -266,13 +263,13 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 
 ### Profile
 
--**Profile Image** This feature holds the default or uploaded image of the users profile. Allowing the user to customize their profile. This is done my pressing the icon then pressing the upload button below
+- **Profile Image**: This feature holds the default or uploaded image of the user's profile. Allowing the user to customize their profile. This is done by pressing the icon and then pressing the upload button below.
 
 ![Change Image Icon](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873600/Screenshot_2024-07-01_233935_k0l74y.png)
 
 ![Upload Button](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719873600/Screenshot_2024-07-01_233940_grph33.png)
 
--**Username, Email and Created at Date** This is a feature which allows the user to view their information and change it. The only content a user can not change is the email. However users can change their username (dependent if the username isn't taken) and password
+- **Username, Email, and Created-at Date**: This feature allows the user to view their information and change it. The only content a user cannot change is the email. However, users can change their username (dependent if the username isn't taken) and password.
 
 ![Profile Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872709/Screenshot_2024-07-01_230828_b1tpm3.png)
 
@@ -282,21 +279,21 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 
 ### Authentication
 
--**Sign in** Allows users to sign-in to their created account and access specific features only an authenticated user can view
+- **Sign in**: Allows users to sign in to their created account and access specific features only an authenticated user can view.
 
 ![Sign in](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872704/Screenshot_2024-07-01_230851_xw71z6.png)
 
--**Sign up** Allows users to sign-up to create an account with notenet and after signing up are redirected to the sign in page
+- **Sign up**: Allows users to sign up to create an account with Notenet and after signing up are redirected to the sign-in page.
 
 ![Sign up](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872703/Screenshot_2024-07-01_230901_vbtkqk.png)
 
--**Sign out** This feature is accessed within the navigation and users will be able to logout by pressing the nav link
+- **Sign out**: This feature is accessed within the navigation, and users will be able to log out by pressing the nav link.
 
 ![Sign out](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872703/Screenshot_2024-07-01_230934_qgkuz9.png)
 
 ### Success Messages
 
-These were used throughout the whole project to ensure te user was informed of anything that is submitted and correct. This is also used for errors.
+These were used throughout the whole project to ensure the user was informed of anything that is submitted and correct. This is also used for errors.
 
 Green has been used for successful messages and Red has been used for errors.
 
@@ -332,109 +329,189 @@ This section demonstrates the mobile responsiveness of the website, showcasing h
 
 ![Sign up Mobile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1720042066/Screenshot_2024-07-03_222648_vcwrma.png)
 
-### API Endpoints Summary
-
-| Endpoint                    | Method | Description                  | Auth Required |
-| --------------------------- | ------ | ---------------------------- | ------------- |
-| `/api/token/`               | POST   | Obtain JWT access/refresh    | No            |
-| `/api/token/refresh/`       | POST   | Refresh access token         | No            |
-| `/notes/`                   | GET    | List notes for user          | Yes           |
-| `/notes/`                   | POST   | Create note                  | Yes           |
-| `/notes/<id>/`              | GET    | Retrieve single note         | Yes           |
-| `/notes/<id>/`              | PUT    | Update note                  | Yes           |
-| `/notes/<id>/`              | DELETE | Delete note                  | Yes           |
-| `/categories/`              | GET    | List categories              | Yes           |
-| `/categories/`              | POST   | Create category              | Yes           |
-| `/categories/<id>/`         | PUT    | Update category              | Yes           |
-| `/categories/<id>/`         | DELETE | Delete category              | Yes           |
-| `/profile/`                 | GET    | Get profile                  | Yes           |
-| `/profile/`                 | PATCH  | Update profile name or image | Yes           |
-| `/profile/change-password/` | PATCH  | Change user password         | Yes           |
-
-### Future Features
+## Real-time Features
 
 1. **Real-time User Interactions**
+
    - Enjoy real-time chat, notifications, and user-to-user messaging for seamless communication.
+
 2. **Personalized User Profiles**
+
    - Customize your profile further, adding new sections and options to make it uniquely yours.
+
 3. **Mobile App Development**
+
    - Stay tuned for the mobile app, extending accessibility to your favorite social platform.
+
 4. **Adding real-time reminders**
-   - Allowing notifications or emails update the user when a specified date has been made for the notes to remind them
+   - Allowing notifications or emails to update the user when a specified date has been made for the notes to remind them
 
-## The Skeleton Plane
+# Notenet
 
-### Wireframes
+![Responsive Mockup](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952316/Screenshot_2024-07-02_213139_zxqenc.png)
 
-All wireframes have been used as a guideline to creating notenet. All wireframes include a desktop and a mobile version to ensure solid guidelines to a fully user friendly and responsive website
+## Project Objective
 
-#### Home Page
+**Notenet** is an online application that allows users to create, update, and delete notes. This is to keep everything within your day-to-day life noted. This means everything you need to keep on top of in your day-to-day is at the click of a finger.
 
-![Home Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872171/Screenshot_2024-07-01_122049_s9xkqg.png)
+Live Website: [Notenet](https://notenet-7107311aceb5.herokuapp.com)
 
-#### Notes Page
+## Table Of Contents
 
-![Notes](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872170/Screenshot_2024-07-01_122107_sfldev.png)
+- [User Experience Design (UX)](#ux)
+- [The Strategy Plane](#the-strategy-plane)
+- [Project Objective](#project-objective)
+- [Agile Project Management](#agile-management)
+- [User Stories](#user-stories)
+- [The Structure Plane](#the-structure-plane)
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Future Features](#future-features)
+- [The Skeleton Plane](#the-skeleton-plane)
+- [Wireframes](#wireframes)
+- [Database Structure](#database-structure)
+- [The Surface Plane](#the-surface-plane)
+- [Design](#design)
+- [Testing](#testing)
+- [Technologies Used](#technologies-used)
+- [Libraries](#libraries)
+- [Frontend Deployment](#deployment-frontend)
+- [Back-end Deployment](#deployment-backend)
+- [Credits](#credits)
+- [Acknowledgments](#acknowledgments)
+- [Full Stack Architecture Overview](#full-stack-architecture-overview)
+- [API Overview](#api-overview)
+- [Real-time Features](#real-time-features)
+- [Frontend Component Documentation](#frontend-component-documentation)
 
-#### Profile Page
+## Frontend Component Documentation
 
-![Profile Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872171/Screenshot_2024-07-01_122117_wmf1yr.png)
+### 1. **`Categories` Page (`/categories`)**
 
-#### Authentication Pages
+The `Categories` page allows users to manage categories for their notes. It includes functionality to add, edit, and delete categories.
 
-![Authentication Pages](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872171/Screenshot_2024-07-01_122127_rff9mm.png)
+#### **Key Features:**
 
-### Database Structure
+- **Fetching Categories:** Retrieves the list of categories from the backend API.
+- **Add New Category:** Users can add a new category by filling out a form with a name, description, and color.
+- **Edit Category:** If a user selects a category, they can edit its name, description, and color.
+- **Delete Category:** Categories can be deleted after confirmation, and the list is updated accordingly.
+- **Category List:** Displays all categories with their details (name, description, and color).
 
-I've crafted the database structure for the Notenet Backend API. Here are the core models:
+#### **Code Overview:**
 
-- **User:** These are slightly customized from Django's standard User model to align with our requirements.
-- **Profile:** Automatically generated upon user registration, these profiles are tailored to encompass essential information.
-- **Notes** Notes related to the user so when a user makes a note it is tailored to them
+- The component uses the `useState` and `useEffect` hooks to manage state and side effects like fetching categories.
+- Users can add or update categories through POST and PUT requests to the backend API.
+- Categories are displayed in a list with interactive buttons for editing or deleting.
 
-Here is a relational Diagram to better understand the relationship between the tables.
+---
 
-![Entity Relationship Diagram](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872170/Screenshot_2024-07-01_123823_q5hl9a.png)
+### 2. **`Home` Page (`/`)**
 
-## The Surface Plane
+The `Home` page serves as the landing page for the application. It provides an introduction to the Notenet app, including instructions for first-time users.
 
-### Design
+#### **Key Features:**
 
-#### Colour Scheme
+- **Welcome Section:** Displays a heading and subheading to welcome users.
+- **Instructions:** Step-by-step guide on how to use the app, with images for visual aid.
+- **Video Tutorial:** An embedded video demonstrating how to use the app.
+- **Animated Background:** A dynamic background animation that adds visual appeal to the page.
 
-Notenet has used very neutral but effective color scheme to keep the website simple but consistent. Here are the colors that have been used.
+#### **Code Overview:**
 
-- **Color 1:** #404040
-- **Color 2:** ##525252
-- **Color 3:** #F97316
+- The component provides an overview of the Notenet app with instructional images and a video embedded for user guidance.
+- The background is styled using Tailwind CSS, and the `Home.module.css` is used for custom animations.
 
-![Colour Pallette](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872169/Screenshot_2024-07-01_222624_axfoxb.png)
+---
 
-#### Typography
+### 3. **`Notes` Page (`/notes`)**
 
-In the "Notenet" project, the fonts "Cabin" and "Arimo" have been thoughtfully chosen to enhance the visual aesthetics and readability of the platform.
+The `Notes` page allows users to create, view, filter, and delete notes. It integrates category filtering, note creation, and CRUD operations for managing notes.
 
-- **Cabin**, sans-serif
-- **Arimo**, sans-serif
+#### **Key Features:**
 
-These fonts are sourced from [Google Fonts](https://fonts.google.com/).
+- **Fetch Notes:** Loads the list of notes from the backend API.
+- **Create Note:** A floating button opens a form to create a new note, including a title, body, and category.
+- **Note List:** Displays notes with their title, body (truncated), and creation date. Notes can be filtered by category.
+- **Delete Note:** Notes can be deleted, and the list is updated after each deletion.
+- **Category Filter:** Users can filter notes by category.
 
-**Cabin** is a modern and highly legible font. Its clean, geometric design offers exceptional clarity and readability, making it accessible to a wide audience. This also gives a very sophisticated look and makes the website look professional.
-This is used for the Navigation Menu
+#### **Code Overview:**
 
-**Arimo** This provides a distinctive, but simplistic look that enhances the overall aesthetic appeal of the platform.
+- The component uses `useState` to manage note data and `useEffect` to fetch notes and categories when the component mounts.
+- A floating button toggles the form for creating new notes.
+- The filtering is handled using `useMemo`, which optimizes the process of filtering notes by category.
 
-#### Imagery
+---
 
-- The images for the profile pictures were used from [Unsplash](https://unsplash.com/)
+### 4. **`Profile` Page (`/profile`)**
 
-- The icons were imported from [Font Awesome](https://fontawesome.com/).
+The `Profile` page allows users to view and edit their profile information, including their username, password, and profile image.
 
-- The no notes found maskot that was made and the notenet logo - was created from [canva](https://canva.com)
+#### **Key Features:**
+
+- **Profile Display:** Displays the user's profile image, name, email, and account creation date.
+- **Image Upload:** Users can upload a new profile image.
+- **Username Update:** A modal allows users to change their username.
+- **Password Change:** A modal allows users to change their password.
+- **Success/Error Messages:** Notifications are displayed to inform users of successful or failed actions.
+
+#### **Code Overview:**
+
+- The component uses `useState` to store user profile data and manage modal visibility for editing username and password.
+- `useEffect` is used to fetch the profile data from the API when the page loads.
+- The component includes modals (`EditUsernameModal`, `EditPasswordModal`) for updating the user's credentials.
+- The profile image can be uploaded using an `<input type="file" />` element and the file is uploaded via a `PATCH` request to the backend.
+
+---
+
+### 5. **`Signin` Page (`/signin`)**
+
+The `Signin` page allows users to log into the application with their credentials (username and password).
+
+#### **Key Features:**
+
+- **Login Form:** A form for entering the username and password.
+- **Authentication:** Submits credentials to the backend API to obtain access and refresh tokens.
+- **Success/Error Handling:** Displays success or error messages depending on the result of the login attempt.
+- **Redirect:** After a successful login, users are redirected to the homepage.
+
+#### **Code Overview:**
+
+- The component uses `useState` to manage the form fields (`username`, `password`).
+- Upon form submission, a POST request is made to the `/api/token/` endpoint to retrieve a JWT token for the user.
+- On success, the user is redirected to the homepage, and a success message is displayed.
+
+---
+
+### 6. **`Signup` Page (`/signup`)**
+
+The `Signup` page allows new users to create an account by providing their username, email, and password.
+
+#### **Key Features:**
+
+- **Registration Form:** A form where users can enter their username, email, and password.
+- **Account Creation:** Submits the registration data to the backend API to create a new account.
+- **Success/Error Handling:** Displays success or error messages based on the result of the signup attempt.
+- **Redirect:** After successful signup, users are redirected to the Sign In page.
+
+#### **Code Overview:**
+
+- The component uses `useState` to manage the form data (`username`, `email`, `password`).
+- Upon form submission, the component makes a POST request to the `/api/user/register/` endpoint to create a new user.
+- If successful, the user is redirected to the sign-in page, and a success message is displayed.
+
+---
+
+## Conclusion
+
+The components listed above form the core of the **Notenet** application. Each component is designed to be modular, reusable, and easy to maintain. The **Notenet** app provides a clean user interface with interactive features such as note creation, profile management, and user authentication.
+
+For more details on the back-end and API, refer to the **API Overview** section.
 
 ## Testing
 
-Notenets testing all done [here](TESTING.md)
+Notenet's testing all done [here](TESTING.md)
 
 ## Technologies Used
 
@@ -445,14 +522,14 @@ Notenets testing all done [here](TESTING.md)
 - **Javascript**
 - **Python**
 
-### Frameworks, Software and Web Applications
+### Frameworks, Software, and Web Applications
 
 #### Frameworks
 
 - React
 - Django (REST)
 - [React Bootstrap](https://react-bootstrap.github.io/) - A CSS framework that helps build solid, responsive, mobile-first sites
-- [Tailwind](https://tailwindcss.com/) A css framework that helps build applications
+- [Tailwind](https://tailwindcss.com/) A CSS framework that helps build applications
 
 #### Applications
 
@@ -501,7 +578,7 @@ The libraries used in this project are located in the requirements.txt file and 
 - [pytz](https://pypi.org/project/pytz/) - This is a set of Python packages to support use of the OpenID decentralized identity system in your application, update to Python 3.
 - [requests-oauhlib](https://pypi.org/project/requests-oauthlib/) - Provides first-class OAuth library support for Requests.
 - [sqlparse](https://pypi.org/project/sqlparse/) - sqlparse is a non-validating SQL parser for Python.
-- [tailwind](https://tailwindcss.com/) - used as a framework for styling css content
+- [tailwind](https://tailwindcss.com/) - used as a framework for styling CSS content
 
 ## Deployment Frontend
 
@@ -517,158 +594,6 @@ The libraries used in this project are located in the requirements.txt file and 
 ### Clone this Project Repository
 
 Go into local IDE and within the terminal
-
-```
-git clone https://github.com/linkofrepository
-```
-
-## Deployment Backend
-
-The project was deployed to [Heroku](https://www.heroku.com/).
-
-1. To begin with we need to create a GitHub repository
-2. Fill in the details for the new repository and then click 'Create Repository'.
-3. When the repository has been created
-4. Go into local IDE and within the terminal and
-
-```
-git clone https://github.com/linkofrepository
-```
-
-4. Install Django and the supporting libraries that are needed, using the following commands:
-
-```
-- `pip3 install 'django<4' gunicorn`
-- `pip3 install 'dj_database_url psycopg2`
-- `pip3 install 'dj3-cloudinary-storage`
-```
-
-5. When Django and the libraries are installed we need to create a requirements file.
-
-```
-pip3 freeze --local > requirements.txt - This will create and add required libraries to requirements.txt
-```
-
-6. Create the project.
-
-```
-django-admin startproject YOUR_PROJECT_NAME
-```
-
-Cd into project
-
-7. When the project is created we can now create the applications. My project consists of the following apps; Profiles, Comments, Followers, Likes, and Posts and Messaging.
-
-```
-python3 manage.py startapp APP_NAME
-```
-
-This will create an application
-
-8. We now need to add the applications to settings.py in the INSTALLED_APPS list.
-
-9. Now it is time to do our first migration and run the server to test that everything works as expected. This is done by writing the commands below.
-
-```
-python3 manage.py makemigrations
-```
-
-This will prepare the migrations
-
-```
-python3 manage.py migrate
-```
-
-This will migrate the changes
-
-```
-python3 manage.py runserver
-```
-
-This runs the server. To test it, click the open browser button that will be visible after the command is run.
-
-10. Now it is time to create our application on Heroku, attach a database, prepare our environment and settings.py file and setup the Cloudinary storage for our static and media files.
-
-- Once signed into your [Heroku](https://www.heroku.com/) account, click on the button labeled 'New' to create a new app.
-
-11. Choose a unique app name, choose your region and click 'Create app".
-
-12. Next we need to connect an external PostgreSQL database to the app from [ElephantSQL](https://customer.elephantsql.com/login). Once logged into your ElephantSQL dashboard, you click 'Create New Instance' to create a new database. Give the database a:
-
-- Name
-- Tiny Turtle Free Plan
-- Selected data center near you
-
-and click 'Create Instance'. Return to your ElephantSQL Dashboard, and click into your new database instance. Copy the Database URL and head back to Heroku.
-
-13. Back in your Heroku app settings, click on the 'Reveal Config Vars' button. Create a config variable called DATABASE_URL and paste in the URL you copied from ElephantSQL. This connects the database into the app.
-
-14. Go back to GitPod and create a new env.py in the top level directory. Then add these rows.
-
-- `import os` - This imports the os library
-- `os.environ["DATABASE_URL"]` - This sets the environment variables.
-- `os.environ["SECRET_KEY"]` - Here you can choose whatever secret key you want.
-
-14. Back in the Heroku Config Vars settings, create another variable called SECRET_KEY and copy in the same secret key as you added into the env.py file. Don't forget to add this env.py file into the .gitignore file so that it isn't committed to GitHub for other users to find.
-
-15. Now we have to connect to our environment and settings.py file. In the settings.py, add the following code:
-
-```
-`import os`
-
-`import dj_database_url`
-
-`if os.path.isfile("env.py"):`
-
-`import env`
-```
-
-16. In the settings file, remove the insecure secret key and replace it with:
-    `SECRET_KEY = os.environ.get('SECRET_KEY')`
-
-17. Now we need to comment out the old database settings in the settings.py file (this is because we are going to use the postgres database instead of the sqlite3 database).
-
-Instead, we add the link to the DATABASE_URL that we added to the environment file earlier.
-
-18. Save all your fields and migrate the changes again.
-
-`python3 manage.py migrate`
-
-19. Now we can set up [Cloudinary](https://cloudinary.com/users/login?RelayState=%2Fconsole%2Fmedia_library%2Ffolders%2Fhome%3Fconsole_customer_external_id%3Dc-95a4cb26371c4a6bc47e19b0f130a1#gsc.tab=0) (where we will store our static files). First you need to create a Cloudinary account and from the Cloudinary dashboard copy the API Environment Variable.
-
-20. Go back to the env.py file in Gitpod and add the Cloudinary url (it's very important that the url is correct):
-
-`os.environ["CLOUDINARY_URL"] = "cloudinary://************************"`
-
-21. Let's head back to Heroku and add the Cloudinary url in Config Vars. We also need to add a disable collectstatic variable to get our first deployment to Heroku to work.
-
-22. Back in the settings.py file, we now need to add our Cloudinary Libraries we installed earlier to the INSTALLED_APPS list. Here it is important to get the order correct.
-
-- cloudinary_storage
-- django.contrib.staticfiles
-- cloudinary
-
-23. For Django to be able to understand how to use and where to store static files we need to add some extra rows to the settings.py file.
-
-24. To be able to get the application to work through Heroku we also need to add our Heroku app and localhost to the ALLOWED_HOSTS list:
-
-`ALLOWED_HOSTS = ['name.herokuapp.com', 'localhost']`
-
-25. Now we just need to create the basic file directory in Gitpod.
-
-- Create a file called \*_Procfile_ and add the line `web: gunicorn PROJ_NAME.wsgi?` to it.
-
-26. Now you can save all the files and prepare for the first commit and push to Github by writing the lines below.
-
-```
-- `git add .`
-- `git commit -m "Deployment Commit`
-- `git push`
-```
-
-27. Now it's time for deployment. Scroll to the top of the settings page in Heroku and click the 'Deploy' tab. For deployment method, select 'Github'. Search for the repository name you want to deploy and then click connect.
-
-28. Scroll down to the manual deployment section and click 'Deploy Branch'. Hopefully the deployment is successful!
 
 ### Cloning And Setting Up This Project
 
