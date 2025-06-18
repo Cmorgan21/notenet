@@ -344,3 +344,95 @@ self.client.logout()
 response = self.client.get(reverse("category-list-create"))
 self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 ```
+
+## Manual Testing
+
+### Test Case 1: Create a Note
+
+**Description:**
+Test the functionality of creating a note via the front-end form.
+
+1. Navigate to the **Notes** page.
+2. Click on the **Create Note** button.
+3. Enter the following data in the form:
+   - **Title**: "Test Note"
+   - **Body**: "This is a test note."
+   - **Category**: "Work"
+4. Submit the form by clicking the **Save** button.
+5. **Expected Result**:
+   - The note should appear in the notes list.
+   - The title "Test Note" should be displayed at the top of the notes list.
+   - A **success message** should appear confirming the note was created.
+
+---
+
+### Test Case 2: Edit a Note
+
+**Description:**
+Test the functionality of editing an existing note.
+
+1. Navigate to the **Notes** page.
+2. Click on the **Edit** button for any note in the list.
+3. Modify the **Body** of the note to: "Updated content for the test note."
+4. Click the **Save** button.
+5. **Expected Result**:
+   - The note should be updated and show the new body content.
+   - A **success message** should appear confirming the note was updated successfully.
+
+---
+
+### Test Case 3: Delete a Note
+
+**Description:**
+Test the functionality of deleting a note.
+
+1. Navigate to the **Notes** page.
+2. Click on the **Delete** button for a note.
+3. Confirm the deletion when prompted.
+4. **Expected Result**:
+   - The note should be removed from the list of notes.
+   - A **success message** should appear confirming the note was deleted.
+
+---
+
+### Test Case 4: Login and Logout
+
+**Description:**
+Test the user authentication flow (login and logout).
+
+1. Navigate to the **Sign In** page.
+2. Enter valid credentials (e.g., **username** and **password**).
+3. Click the **Login** button.
+4. **Expected Result**:
+   - The user should be logged in and redirected to the main notes page.
+   - The **Logout** button should be visible in the navigation bar.
+5. Click on the **Logout** button.
+6. **Expected Result**:
+   - The user should be logged out and redirected to the sign-in page.
+
+---
+
+### Test Case 5: Profile Image Upload
+
+**Description:**
+Test the functionality of uploading a profile image.
+
+1. Navigate to the **Profile** page.
+2. Click on the **Change Profile Image** button.
+3. Upload an image from your device.
+4. Click **Save**.
+5. **Expected Result**:
+   - The uploaded image should appear as the user's profile image.
+   - A **success message** should be shown confirming the image upload.
+
+---
+
+### Test Case 6: Validation Messages
+
+**Description:**
+Test the form validation when creating/editing a note.
+
+1. Navigate to the **Create Note** or **Edit Note** form.
+2. Leave the required fields (title and body) blank and try to submit.
+3. **Expected Result**:
+   - Appropriate validation error messages should be displayed, such as "Title is required" or "Body is required."
