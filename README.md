@@ -308,6 +308,20 @@ The navigation bar boasts an elegant and minimalist design, ensuring an exceptio
 
 ![Filter by Category](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750219329/Screenshot_2025-06-18_050133_hnkhzh.png)
 
+- **Edit Category**  
+  Within the detailed note page, as you edit the details. There is a function to change the category of the note
+
+![EditCategory](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218967/Screenshot_2025-06-18_043939_bkh5jc.png)
+
+- **Success Messages**  
+  Once a user has created a category they will be updated with a success message. This is also for editing and deleting one. A message when a note has changed category will also raise a success message
+
+![Category Created](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218966/Screenshot_2025-06-18_043637_zm3bqg.png)
+
+![Category Deleted](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218967/Screenshot_2025-06-18_043712_qvae2m.png)
+
+![Category Updated](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750218965/Screenshot_2025-06-18_043655_dovn23.png)
+
 ### Profile
 
 -**Profile Image** This feature holds the default or uploaded image of the users profile. Allowing the user to customize their profile. This is done my pressing the icon then pressing the upload button below
@@ -422,6 +436,10 @@ All wireframes have been used as a guideline to creating notenet. All wireframes
 
 #### Profile Page
 
+![Profile Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750219865/categorywireframepage.png)
+
+#### Category Page
+
 ![Profile Page](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872171/Screenshot_2024-07-01_122117_wmf1yr.png)
 
 #### Authentication Pages
@@ -438,7 +456,7 @@ I've crafted the database structure for the Notenet Backend API. Here are the co
 
 Here is a relational Diagram to better understand the relationship between the tables.
 
-![Entity Relationship Diagram](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719872170/Screenshot_2024-07-01_123823_q5hl9a.png)
+![Entity Relationship Diagram](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750219656/entityrelationshipdiagram.png)
 
 ## Frontend Component Documentation
 
