@@ -145,3 +145,202 @@ All Pages were structured and created using the guidance of Pylunt to ensure no 
 #### Current Bugs
 
 There are no current bugs to knowledge.
+
+## Test Cases Documentation
+
+This document outlines the test cases for the **Notes**, **Profile**, and **Category** models in the application. Each test ensures that the core functionalities are working as expected.
+
+### Test Case: `test_note_creation`
+
+**Description:**  
+Tests whether notes are created correctly with their attributes.
+
+**Expected Result:**  
+The **Note** model should store the correct title, body, author, and category.
+
+```python
+self.assertEqual(self.note1.title, 'Test Note 1')
+self.assertEqual(self.note1.body, 'This is the body of test note 1.')
+self.assertEqual(self.note1.author.username, 'testuser')
+self.assertEqual(self.note1.category.name, 'Work')
+
+self.assertEqual(self.note2.title, 'Test Note 2')
+self.assertEqual(self.note2.category, None)
+Test Case: test_note_str_method
+Description:
+Verifies the Note model's string representation.
+
+Expected Result:
+The string representation should match "Test Note 1 by testuser".
+
+Copy
+Edit
+self.assertEqual(str(self.note1), 'Test Note 1 by testuser')
+self.assertEqual(str(self.note2), 'Test Note 2 by testuser')
+```
+
+**Test Case: test_note_auto_fields**
+Description:
+Verifies that auto-generated fields like id, created_on, and updated_at are populated.
+
+**Expected Result:**
+The Note instance should have non-None values for id, created_on, and updated_at.
+
+```python
+python
+Copy
+Edit
+self.assertIsNotNone(self.note1.id)
+self.assertIsNotNone(self.note1.created_on)
+self.assertIsNotNone(self.note1.updated_at)
+self.assertIsNotNone(self.note2.id)
+self.assertIsNotNone(self.note2.created_on)
+self.assertIsNotNone(self.note2.updated_at)
+```
+
+## Profile Model Tests
+
+### Test Case: test_profile_creation
+
+**Description**:
+Verifies that a Profile instance is created and reflects changes to the associated User.
+
+**Expected Result**:
+The Profile instance should reflect changes made to the User instance.
+
+```python
+Copy
+Edit
+self.assertTrue(Profile.objects.filter(user=self.user).exists())
+profile = Profile.objects.get(user=self.user)
+profile.name = self.user.username
+profile.save()
+self.assertEqual(profile.name, self.user.username)
+self.assertEqual(profile.email, self.user.email)
+Test Case: test_profile_update
+Description:
+Verifies that the Profile is updated when the User instance is updated.
+```
+
+**Expected Result**:
+The Profile should update accordingly when the User is updated.
+
+```python
+Copy
+Edit
+self.user.username = 'updated_user'
+self.user.email = 'updateduser@example.com'
+self.user.save()
+
+profile = Profile.objects.get(user=self.user)
+profile.name = self.user.username
+profile.email = self.user.email
+profile.save()
+
+self.assertEqual(profile.name, 'updated_user')
+self.assertEqual(profile.email, 'updateduser@example.com')
+```
+
+## Category Model Tests
+
+**Test Case**: test_list_categories_returns_only_user_owned
+**Description**:
+Verifies that a user can only see their own categories.
+
+**Expected Result**:
+The user should only see categories owned by them.
+
+```python
+Copy
+Edit
+response = self.client.get(reverse("category-list-create"))
+self.assertEqual(response.status_code, status.HTTP_200_OK)
+self.assertEqual(len(response.data), 1)
+self.assertEqual(response.data[0]["name"], "Work")
+Test Case: test_create_category_successfully
+Description:
+Verifies that a user can create a new category.
+```
+
+**Expected Result**:
+The category should be successfully created and the count should increase by 1.
+
+```python
+Copy
+Edit
+data = {
+"name": "New Category",
+"description": "Test description",
+"color": "#123456"
+}
+response = self.client.post(reverse("category-list-create"), data)
+self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+self.assertEqual(Category.objects.filter(owner=self.user1).count(), 2)
+```
+
+**Test Case**: test_retrieve_category
+**Description**:
+Verifies that a user can retrieve their category.
+
+**Expected Result**:
+The correct category data should be returned.
+
+```python
+Copy
+Edit
+url = reverse("category-detail", args=[self.category1.id])
+response = self.client.get(url)
+self.assertEqual(response.status_code, status.HTTP_200_OK)
+self.assertEqual(response.data["name"], "Work")
+```
+
+**Test Case:** test_update_category
+**Description:**
+Verifies that a user can update their category.
+
+Expected Result:
+The category should be successfully updated.
+
+```python
+Copy
+Edit
+url = reverse("category-detail", args=[self.category1.id])
+data = {
+"name": "Updated Name",
+"description": "Updated description",
+"color": "#654321"
+}
+response = self.client.put(url, data)
+self.assertEqual(response.status_code, status.HTTP_200_OK)
+self.category1.refresh_from_db()
+self.assertEqual(self.category1.name, "Updated Name")
+**Test Case:** test_delete_category
+**Description:**
+Verifies that a user can delete their category.
+```
+
+**Expected Result**:
+The category should be deleted.
+
+```python
+Copy
+Edit
+url = reverse("category-detail", args=[self.category1.id])
+response = self.client.delete(url)
+self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+self.assertFalse(Category.objects.filter(id=self.category1.id).exists())
+**Test Case:** test_unauthenticated_user_denied
+**Description:**
+Verifies that unauthenticated users cannot access the category endpoints.
+```
+
+**Expected Result**:
+Unauthorized access should be denied.
+
+```python
+Copy
+Edit
+self.client.logout()
+response = self.client.get(reverse("category-list-create"))
+self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+```
