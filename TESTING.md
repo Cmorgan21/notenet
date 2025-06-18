@@ -66,42 +66,50 @@ All react pages were supported by using a Jslinter to ensure all code was high q
 Home
 
 Desktop
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719951828/Screenshot_2024-07-02_211018_no4bsq.png)
+![Lighthouse testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719951828/Screenshot_2024-07-02_211018_no4bsq.png)
 
 Mobile
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719951828/Screenshot_2024-07-02_211018_no4bsq.png)
+![Lighthouse testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719951828/Screenshot_2024-07-02_211018_no4bsq.png)
 
 Profile
 
 Desktop
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952956/Screenshot_2024-07-02_214054_irzio8.png)
+![Lighthouse testing Profile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952956/Screenshot_2024-07-02_214054_irzio8.png)
 
 Mobile
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952951/Screenshot_2024-07-02_214150_nfxyp6.png)
+![Lighthouse testing Profile](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952951/Screenshot_2024-07-02_214150_nfxyp6.png)
 
 Notes
 
 Desktop
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952957/Screenshot_2024-07-02_214028_ihyjt9.png)
+![Lighthouse testing Notes](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952957/Screenshot_2024-07-02_214028_ihyjt9.png)
 
 Mobile
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952957/Screenshot_2024-07-02_214001_gnzcj2.png)
+![Lighthouse testing Notes](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952957/Screenshot_2024-07-02_214001_gnzcj2.png)
+
+Categories
+
+Desktop
+![Lighthouse testing Categories](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750221042/Screenshot_2025-06-18_052619_rhlfrj.png)
+
+Mobile
+![Lighthouse testing Categories](https://res.cloudinary.com/dbjm35bjd/image/upload/v1750221039/Screenshot_2025-06-18_052908_ogl9in.png)
 
 Sign in
 
 Desktop
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952958/Screenshot_2024-07-02_213853_z6wamc.png)
+![Lighthouse testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952958/Screenshot_2024-07-02_213853_z6wamc.png)
 
 Mobile
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952958/Screenshot_2024-07-02_213912_gc3gkf.png)
+![Lighthouse testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719952958/Screenshot_2024-07-02_213912_gc3gkf.png)
 
 Sign up
 
 Desktop
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719953318/Screenshot_2024-07-02_214810_czq2c8.png)
+![Lighthouse testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719953318/Screenshot_2024-07-02_214810_czq2c8.png)
 
 Mobile
-![HTML testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719953318/Screenshot_2024-07-02_214751_wxrtrs.png)
+![Lighthouse testing Home](https://res.cloudinary.com/dbjm35bjd/image/upload/v1719953318/Screenshot_2024-07-02_214751_wxrtrs.png)
 
 All lighthouse testing was tested over all pages and Desktop and Mobile
 Overall scores were good especially with Desktop, however the scores were smaller when it came to mobile.
