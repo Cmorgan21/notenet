@@ -94,10 +94,8 @@ const Notes = () => {
     }
   };
 
-  // ✅ useMemo to optimize filtering
   const filteredNotes = useMemo(() => {
     if (filterCategory === "all") return notes;
-
     return notes.filter(
       (note) => note.category && note.category.id === parseInt(filterCategory)
     );
@@ -226,12 +224,20 @@ const Notes = () => {
                   </select>
                 </div>
 
+                {/* Save + Cancel Buttons */}
                 <div className="flex items-center justify-between">
                   <button
                     type="submit"
                     className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   >
                     Save Note
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsFormLoaded(false)}
+                    className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2"
+                  >
+                    Cancel
                   </button>
                 </div>
               </form>
